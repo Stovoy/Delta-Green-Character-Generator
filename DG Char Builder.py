@@ -4,108 +4,110 @@ import time
 
 ss = ezsheets.Spreadsheet('')
 sheet = ss[0]
- 
-statList = ['STR', 'CON', 'DEX', 'INT', 'POW', 'CHA']
- 
-statDict = {
-            'STR': 'C8',
-            'CON': 'C9',
-            'DEX': 'C10',
-            'INT': 'C11',
-            'POW': 'C12',
-            'CHA': 'C13'
-            }
 
+statList = ['STR', 'CON', 'DEX', 'INT', 'POW', 'CHA']
+
+statDict = {
+    'STR': 'C8',
+    'CON': 'C9',
+    'DEX': 'C10',
+    'INT': 'C11',
+    'POW': 'C12',
+    'CHA': 'C13'
+}
 
 skillPackages = {
-        'Artist': ['Alertness', 'Craft (Choose One)', 'Disguise',
-                   'Persuade', 'Art (Choose One)', 'Art (Choose Another)',
-                   'Art (Choose one more)', 'HUMINT'],
-        'Actor': ['Alertness', 'Craft (Choose One)', 'Disguise',
-                   'Persuade', 'Art (Choose One)', 'Art (Choose Another)',
-                   'Art (Choose one more)', 'HUMINT'],
-        'Musician': ['Alertness', 'Craft (Choose One)', 'Disguise',
-                   'Persuade', 'Art (Choose One)', 'Art (Choose Another)',
-                   'Art (Choose one more)', 'HUMINT'],
-        'Athlete': ['Alertness', 'Athletics', 'Dodge', 'First Aid',
-                    'HUMINT', 'Persuade', 'Swim', 'Unarmed Combat'],
-        'Author': ['Anthropology', 'Art (Choose One)', 'Bureaucracy', 'History',
+    'Artist': ['Alertness', 'Craft (Choose One)', 'Disguise',
+               'Persuade', 'Art (Choose One)', 'Art (Choose Another)',
+               'Art (Choose one more)', 'HUMINT'],
+    'Actor': ['Alertness', 'Craft (Choose One)', 'Disguise',
+              'Persuade', 'Art (Choose One)', 'Art (Choose Another)',
+              'Art (Choose one more)', 'HUMINT'],
+    'Musician': ['Alertness', 'Craft (Choose One)', 'Disguise',
+                 'Persuade', 'Art (Choose One)', 'Art (Choose Another)',
+                 'Art (Choose one more)', 'HUMINT'],
+    'Athlete': ['Alertness', 'Athletics', 'Dodge', 'First Aid',
+                'HUMINT', 'Persuade', 'Swim', 'Unarmed Combat'],
+    'Author': ['Anthropology', 'Art (Choose One)', 'Bureaucracy', 'History',
+               'Law', 'Occult', 'Persuade', 'HUMINT'],
+    'Editor': ['Anthropology', 'Art (Choose One)', 'Bureaucracy', 'History',
+               'Law', 'Occult', 'Persuade', 'HUMINT'],
+    'Journalist': ['Anthropology', 'Art (Choose One)', 'Bureaucracy', 'History',
                    'Law', 'Occult', 'Persuade', 'HUMINT'],
-        'Editor': ['Anthropology', 'Art (Choose One)', 'Bureaucracy', 'History',
-                   'Law', 'Occult', 'Persuade', 'HUMINT'],
-        'Journalist': ['Anthropology', 'Art (Choose One)', 'Bureaucracy', 'History',
-                   'Law', 'Occult', 'Persuade', 'HUMINT'],
-        '"Black Bag" Training': ['Alertness', 'Craft (Choose One)', 'Craft (Electrician)',
-                                 'Craft (Locksmithing)', 'Criminology', 'Disguise',
-                                 'Search', 'Stealth'],
-        'Blue-Collar Worker': ['Alertness', 'Craft (choose one)', 'Craft (choose another)',
-                               'Drive', 'First Aid', 'Heavy Machinery', 'Navigate', 'Search'],
-        'Bureaucrat': ['Accounting', 'Bureaucracy', 'Computer Science',
-                       'Criminology', 'HUMINT', 'Law', 'Persuade', 'Personal Specialty'],
-        'Clergy': ['Foreign Languages (choose three)', 'History',
-                       'HUMINT', 'Occult', 'Persuade', 'Psychotherapy'],
-        'Combat Veteran': ['Alertness', 'Dodge', 'Firearms', 'First Aid',
-                           'Heavy Weapons', 'Melee Weapons', 'Stealth', 'Unarmed Combat.'],
-        'Computer Enthusiast': ['Computer Science', 'Craft (Microelectronics)', 'Science (Mathematics)',
-                                'SIGINT', 'Personal Specialty'],
-        'Hacker': ['Computer Science', 'Craft (Microelectronics)', 'Science (Mathematics)',
-                                'SIGINT', 'Personal Specialty'],
-        'Counselor': ['Bureaucracy', 'First Aid', 'Foreign Language (choose one)',
-                      'HUMINT', 'Law', 'Persuade', 'Psychotherapy', 'Search'],
-        'Criminalist': ['Accounting', 'Bureaucracy', 'Computer Science',
-                        'Criminology', 'Forensics', 'Law', 'Pharmacy', 'Search'],
-        'Firefighter': ['Alertness', 'Demolitions', 'Drive', 'First Aid',
-                        'Forensics', 'Heavy Machinery', 'Navigate', 'Search.'],
-        'Gangster': ['Alertness', 'Criminology', 'Dodge', 'Drive', 'Persuade', 'Stealth',
-                     'Athletics', 'Foreign Language', 'Firearms', 'HUMINT',
-                     'Melee Weapons', 'Pharmacy', 'Unarmed Combat'],
-        'Deep Cover': ['Alertness', 'Criminology', 'Dodge', 'Drive', 'Persuade', 'Stealth',
-                     'Athletics', 'Foreign Language', 'Firearms', 'HUMINT',
-                     'Melee Weapons', 'Pharmacy', 'Unarmed Combat'],
-        'Interrogator': ['Criminology', 'Foreign Language (choose one)',
-                         'Foreign Language (choose another)','HUMINT',
-                         'Law', 'Persuade', 'Pharmacy', 'Search'],
-        'Liberal Arts Degree': ['Anthropology or Archeology', 'Art (choose one)', 'Foreign Language (choose one)',
-                        'History', 'Persuade', 'Personal Specialty'],
-        'Military officer': ['Bureaucracy', 'Firearms', 'History', 'Military Science (choose one)',
-                             'Navigate', 'Persuade', 'Unarmed Combat', 'Artillery',
-                             'Heavy Machinery', 'Heavy Weapons', 'HUMINT', 'Pilot (choose one)', 'SIGINT'],
-        'MBA': ['Accounting', 'Bureaucracy', 'HUMINT', 'Law', 'Persuade', 'Personal Specialty'],
-        'Nurse': ['Alertness', 'First Aid', 'Medicine', 'Persuade', 'Pharmacy',
+    '"Black Bag" Training': ['Alertness', 'Craft (Choose One)', 'Craft (Electrician)',
+                             'Craft (Locksmithing)', 'Criminology', 'Disguise',
+                             'Search', 'Stealth'],
+    'Blue-Collar Worker': ['Alertness', 'Craft (choose one)', 'Craft (choose another)',
+                           'Drive', 'First Aid', 'Heavy Machinery', 'Navigate', 'Search'],
+    'Bureaucrat': ['Accounting', 'Bureaucracy', 'Computer Science',
+                   'Criminology', 'HUMINT', 'Law', 'Persuade', 'Personal Specialty'],
+    'Clergy': ['Foreign Languages (choose three)', 'History',
+               'HUMINT', 'Occult', 'Persuade', 'Psychotherapy'],
+    'Combat Veteran': ['Alertness', 'Dodge', 'Firearms', 'First Aid',
+                       'Heavy Weapons', 'Melee Weapons', 'Stealth', 'Unarmed Combat.'],
+    'Computer Enthusiast': ['Computer Science', 'Craft (Microelectronics)', 'Science (Mathematics)',
+                            'SIGINT', 'Personal Specialty'],
+    'Hacker': ['Computer Science', 'Craft (Microelectronics)', 'Science (Mathematics)',
+               'SIGINT', 'Personal Specialty'],
+    'Counselor': ['Bureaucracy', 'First Aid', 'Foreign Language (choose one)',
+                  'HUMINT', 'Law', 'Persuade', 'Psychotherapy', 'Search'],
+    'Criminalist': ['Accounting', 'Bureaucracy', 'Computer Science',
+                    'Criminology', 'Forensics', 'Law', 'Pharmacy', 'Search'],
+    'Firefighter': ['Alertness', 'Demolitions', 'Drive', 'First Aid',
+                    'Forensics', 'Heavy Machinery', 'Navigate', 'Search.'],
+    'Gangster': ['Alertness', 'Criminology', 'Dodge', 'Drive', 'Persuade', 'Stealth',
+                 'Athletics', 'Foreign Language', 'Firearms', 'HUMINT',
+                 'Melee Weapons', 'Pharmacy', 'Unarmed Combat'],
+    'Deep Cover': ['Alertness', 'Criminology', 'Dodge', 'Drive', 'Persuade', 'Stealth',
+                   'Athletics', 'Foreign Language', 'Firearms', 'HUMINT',
+                   'Melee Weapons', 'Pharmacy', 'Unarmed Combat'],
+    'Interrogator': ['Criminology', 'Foreign Language (choose one)',
+                     'Foreign Language (choose another)', 'HUMINT',
+                     'Law', 'Persuade', 'Pharmacy', 'Search'],
+    'Liberal Arts Degree': ['Anthropology or Archeology', 'Art (choose one)', 'Foreign Language (choose one)',
+                            'History', 'Persuade', 'Personal Specialty'],
+    'Military officer': ['Bureaucracy', 'Firearms', 'History', 'Military Science (choose one)',
+                         'Navigate', 'Persuade', 'Unarmed Combat', 'Artillery',
+                         'Heavy Machinery', 'Heavy Weapons', 'HUMINT', 'Pilot (choose one)', 'SIGINT'],
+    'MBA': ['Accounting', 'Bureaucracy', 'HUMINT', 'Law', 'Persuade', 'Personal Specialty'],
+    'Nurse': ['Alertness', 'First Aid', 'Medicine', 'Persuade', 'Pharmacy',
+              'Psychotherapy', 'Science (Biology)', 'Search.'],
+    'Paramedic': ['Alertness', 'First Aid', 'Medicine', 'Persuade', 'Pharmacy',
                   'Psychotherapy', 'Science (Biology)', 'Search.'],
-        'Paramedic': ['Alertness', 'First Aid', 'Medicine', 'Persuade', 'Pharmacy',
-                  'Psychotherapy', 'Science (Biology)', 'Search.'],
-        'Pre-Med': ['Alertness', 'First Aid', 'Medicine', 'Persuade', 'Pharmacy',
-                  'Psychotherapy', 'Science (Biology)', 'Search.'],
-        'Occult Investigator': ['Anthropology', 'Archeology', 'Computer Science', 'Criminology',
-                                'History', 'Occult', 'Persuade', 'Search'],
-        'Conspiracy Theorist': ['Anthropology', 'Archeology', 'Computer Science', 'Criminology',
-                                'History', 'Occult', 'Persuade', 'Search'],
-        'Outdoorsman': ['Alertness', 'Athletics', 'Firearms',
-                        'Navigate', 'Ride', 'Search', 'Stealth', 'Survival.'],
-        'Photographer': ['Alertness', 'Art (Photography)', 'Computer Science', 'Persuade',
-                         'Search', 'Stealth', 'Personal Specialty'],
-        'Pilot': ['Alertness', 'Craft (Mechanic)', 'First Aid', 'Foreign Language (choose one)', 'Navigate',
-                   'Pilot (choose one)', 'Survival', 'Swim'],
-        'Sailor': ['Alertness', 'Craft (Mechanic)', 'First Aid', 'Foreign Language (choose one)', 'Navigate',
-                   'Pilot (choose one)', 'Survival', 'Swim'],
-        'Police Officer': ['Alertness', 'Criminology', 'Drive', 'Firearms',
-                           'HUMINT', 'Law', 'Melee Weapons', 'Unarmed Combat'],
-        'Science Grad Student': ['Bureaucracy', 'Computer Use', 'Craft (choose one)', 'Foreign Language (choose one)', 'Science (choose one)',
-                                 'Science (choose another)', 'Science (choose another)', 'Accounting', 'Forensics', 'Law', 'Pharmacy'],
-        'Social Worker': ['Bureaucracy', 'Criminology', 'Forensics', 'Foreign Language (choose one)',
-                                    'HUMINT', 'Law', 'Persuade', 'Search'],
-        'Criminal Justice Degree': ['Bureaucracy', 'Criminology', 'Forensics', 'Foreign Language (choose one)',
-                                    'HUMINT', 'Law', 'Persuade', 'Search'],
-        'Soldier': ['Alertness', 'Artillery', 'Athletics', 'Drive', 'Firearms',
-                   'Heavy Weapons', 'Military Science (Land)', 'Unarmed Combat'],
-        'Marine': ['Alertness', 'Artillery', 'Athletics', 'Drive', 'Firearms',
-                   'Heavy Weapons', 'Military Science (Land)', 'Unarmed Combat'],
-        'Translator': ['Anthropology', 'Foreign Language (choose one)', 'Foreign Language (choose another)', 'Foreign Language (choose another)',
-                       'History', 'HUMINT', 'Persuade', 'Personal Specialty'],
-        'Urban explorer': ['Alertness', 'Athletics', 'Craft (choose one)', 'Law',
-                           'Navigate', 'Persuade', 'Search', 'Stealth']
-    }
+    'Pre-Med': ['Alertness', 'First Aid', 'Medicine', 'Persuade', 'Pharmacy',
+                'Psychotherapy', 'Science (Biology)', 'Search.'],
+    'Occult Investigator': ['Anthropology', 'Archeology', 'Computer Science', 'Criminology',
+                            'History', 'Occult', 'Persuade', 'Search'],
+    'Conspiracy Theorist': ['Anthropology', 'Archeology', 'Computer Science', 'Criminology',
+                            'History', 'Occult', 'Persuade', 'Search'],
+    'Outdoorsman': ['Alertness', 'Athletics', 'Firearms',
+                    'Navigate', 'Ride', 'Search', 'Stealth', 'Survival.'],
+    'Photographer': ['Alertness', 'Art (Photography)', 'Computer Science', 'Persuade',
+                     'Search', 'Stealth', 'Personal Specialty'],
+    'Pilot': ['Alertness', 'Craft (Mechanic)', 'First Aid', 'Foreign Language (choose one)', 'Navigate',
+              'Pilot (choose one)', 'Survival', 'Swim'],
+    'Sailor': ['Alertness', 'Craft (Mechanic)', 'First Aid', 'Foreign Language (choose one)', 'Navigate',
+               'Pilot (choose one)', 'Survival', 'Swim'],
+    'Police Officer': ['Alertness', 'Criminology', 'Drive', 'Firearms',
+                       'HUMINT', 'Law', 'Melee Weapons', 'Unarmed Combat'],
+    'Science Grad Student': ['Bureaucracy', 'Computer Use', 'Craft (choose one)', 'Foreign Language (choose one)',
+                             'Science (choose one)',
+                             'Science (choose another)', 'Science (choose another)', 'Accounting', 'Forensics', 'Law',
+                             'Pharmacy'],
+    'Social Worker': ['Bureaucracy', 'Criminology', 'Forensics', 'Foreign Language (choose one)',
+                      'HUMINT', 'Law', 'Persuade', 'Search'],
+    'Criminal Justice Degree': ['Bureaucracy', 'Criminology', 'Forensics', 'Foreign Language (choose one)',
+                                'HUMINT', 'Law', 'Persuade', 'Search'],
+    'Soldier': ['Alertness', 'Artillery', 'Athletics', 'Drive', 'Firearms',
+                'Heavy Weapons', 'Military Science (Land)', 'Unarmed Combat'],
+    'Marine': ['Alertness', 'Artillery', 'Athletics', 'Drive', 'Firearms',
+               'Heavy Weapons', 'Military Science (Land)', 'Unarmed Combat'],
+    'Translator': ['Anthropology', 'Foreign Language (choose one)', 'Foreign Language (choose another)',
+                   'Foreign Language (choose another)',
+                   'History', 'HUMINT', 'Persuade', 'Personal Specialty'],
+    'Urban explorer': ['Alertness', 'Athletics', 'Craft (choose one)', 'Law',
+                       'Navigate', 'Persuade', 'Search', 'Stealth']
+}
 
 bondsDict = {
     'Bond 1': 'F9',
@@ -114,7 +116,7 @@ bondsDict = {
     'Bond 4': 'F12',
     'Bond 5': 'F13',
     'Bond 6': 'F114'
-    }
+}
 
 bondsScoreDict = {
     'Score 1': 'H9',
@@ -123,125 +125,125 @@ bondsScoreDict = {
     'Score 4': 'H12',
     'Score 5': 'H13',
     'Score 6': 'H114'
-    }
- 
+}
+
 skillDict = {
-            'Accounting': 'C23',
-            'Alertness': 'C24',
-            'Anthropology': 'C25',
-            'Archeology': 'C26',
-            'Art': 'C27',
-            'Artillery': 'C29',
-            'Athletics': 'C30',
-            'Bureaucracy': 'C31',
-            'Computer Science': 'C32',
-            'Craft': 'C33',
-            'Criminology': 'C35',
-            'Demolitions': 'C36',
-            'Disguise': 'C37',
-            'Dodge': 'C38',
-            'Drive': 'C39',
-            'Firearms': 'C40',
-            'First Aid': 'E23',
-            'Forensics': 'E24',
-            'Heavy Machinery': 'E25',
-            'Heavy Weapons': 'E26',
-            'History': 'E27',
-            'HUMINT': 'E28',
-            'Law': 'E29',
-            'Medicine': 'E30',
-            'Melee Weapons': 'E31',
-            'Military Science': 'E32',
-            'Navigate': 'E34',
-            'Occult': 'E35',
-            'Persuade': 'E36',
-            'Pharmacy': 'E37',
-            'Pilot': 'E38',
-            'Psychotherapy': 'E40',
-            'Ride': 'G23',
-            'Science': 'G24',
-            'Search': 'G26',
-            'SIGINT': 'G27',
-            'Stealth': 'G28',
-            'Surgery': 'G29',
-            'Survival': 'G30',
-            'Swim': 'G31',
-            'Unarmed Combat': 'G32',
-            'Unnatural': 'G33',
-            'Other Skill 1': 'G35',
-            'Other Skill 2': 'G36',
-            'Other Skill 3': 'G37',
-            'Other Skill 4': 'G38',
-            'Other Skill 5': 'G39',
-            'Other Skill 6': 'G40'
-             }
- 
+    'Accounting': 'C23',
+    'Alertness': 'C24',
+    'Anthropology': 'C25',
+    'Archeology': 'C26',
+    'Art': 'C27',
+    'Artillery': 'C29',
+    'Athletics': 'C30',
+    'Bureaucracy': 'C31',
+    'Computer Science': 'C32',
+    'Craft': 'C33',
+    'Criminology': 'C35',
+    'Demolitions': 'C36',
+    'Disguise': 'C37',
+    'Dodge': 'C38',
+    'Drive': 'C39',
+    'Firearms': 'C40',
+    'First Aid': 'E23',
+    'Forensics': 'E24',
+    'Heavy Machinery': 'E25',
+    'Heavy Weapons': 'E26',
+    'History': 'E27',
+    'HUMINT': 'E28',
+    'Law': 'E29',
+    'Medicine': 'E30',
+    'Melee Weapons': 'E31',
+    'Military Science': 'E32',
+    'Navigate': 'E34',
+    'Occult': 'E35',
+    'Persuade': 'E36',
+    'Pharmacy': 'E37',
+    'Pilot': 'E38',
+    'Psychotherapy': 'E40',
+    'Ride': 'G23',
+    'Science': 'G24',
+    'Search': 'G26',
+    'SIGINT': 'G27',
+    'Stealth': 'G28',
+    'Surgery': 'G29',
+    'Survival': 'G30',
+    'Swim': 'G31',
+    'Unarmed Combat': 'G32',
+    'Unnatural': 'G33',
+    'Other Skill 1': 'G35',
+    'Other Skill 2': 'G36',
+    'Other Skill 3': 'G37',
+    'Other Skill 4': 'G38',
+    'Other Skill 5': 'G39',
+    'Other Skill 6': 'G40'
+}
+
 defaultSkills = {
-            'Accounting': '10',
-            'Alertness': '20',
-            'Anthropology': '0',
-            'Archeology': '0',
-            'Art': '0',
-            'Artillery': '0',
-            'Athletics': '30',
-            'Bureaucracy': '10',
-            'Computer Science': '0',
-            'Craft': '0',
-            'Criminology': '10',
-            'Demolitions': '0',
-            'Disguise': '10',
-            'Dodge': '30',
-            'Drive': '20',
-            'Firearms': '20',
-            'First Aid': '10',
-            'Forensics': '0',
-            'Heavy Machinery': '10',
-            'Heavy Weapons': '0',
-            'History': '10',
-            'HUMINT': '10',
-            'Law': '0',
-            'Medicine': '0',
-            'Melee Weapons': '30',
-            'Military Science': '0',
-            'Navigate': '10',
-            'Occult': '10',
-            'Persuade': '20',
-            'Pharmacy': '0',
-            'Pilot': '0',
-            'Psychotherapy': '0',
-            'Ride': '10',
-            'Science': '0',
-            'Search': '20',
-            'SIGINT': '0',
-            'Stealth': '10',
-            'Surgery': '0',
-            'Survival': '10',
-            'Swim': '20',
-            'Unarmed Combat': '40',
-            'Unnatural': '0',
-            'Other Skill 1': '0',
-            'Other Skill 2': '0',
-            'Other Skill 3': '0',
-            'Other Skill 4': '0',
-            'Other Skill 5': '0',
-            'Other Skill 6': '0'
-             }
+    'Accounting': '10',
+    'Alertness': '20',
+    'Anthropology': '0',
+    'Archeology': '0',
+    'Art': '0',
+    'Artillery': '0',
+    'Athletics': '30',
+    'Bureaucracy': '10',
+    'Computer Science': '0',
+    'Craft': '0',
+    'Criminology': '10',
+    'Demolitions': '0',
+    'Disguise': '10',
+    'Dodge': '30',
+    'Drive': '20',
+    'Firearms': '20',
+    'First Aid': '10',
+    'Forensics': '0',
+    'Heavy Machinery': '10',
+    'Heavy Weapons': '0',
+    'History': '10',
+    'HUMINT': '10',
+    'Law': '0',
+    'Medicine': '0',
+    'Melee Weapons': '30',
+    'Military Science': '0',
+    'Navigate': '10',
+    'Occult': '10',
+    'Persuade': '20',
+    'Pharmacy': '0',
+    'Pilot': '0',
+    'Psychotherapy': '0',
+    'Ride': '10',
+    'Science': '0',
+    'Search': '20',
+    'SIGINT': '0',
+    'Stealth': '10',
+    'Surgery': '0',
+    'Survival': '10',
+    'Swim': '20',
+    'Unarmed Combat': '40',
+    'Unnatural': '0',
+    'Other Skill 1': '0',
+    'Other Skill 2': '0',
+    'Other Skill 3': '0',
+    'Other Skill 4': '0',
+    'Other Skill 5': '0',
+    'Other Skill 6': '0'
+}
 
 anthropologistHistorianSkills = {
     'choices': [{
         'Archeology': '50',
         'Anthropology': '50'
-        }], 
+    }],
     'languages': {
         'Foreign Language (choose one)': '50',
         'Foreign Language (choose another)': '40'
-        },
+    },
     'profSkills': {
         'Bureaucracy': '40',
         'History': '60',
         'Occult': '40',
         'Persuade': '40'
-        },
+    },
     'chooseSkills': {
         'Anthropology': '40',
         'Archeology': '40',
@@ -250,14 +252,14 @@ anthropologistHistorianSkills = {
         'Ride': '50',
         'Search': '60',
         'Survival': '50'
-        }       
+    }
 }
 
 computerScienceSkills = {
     'choices': [
-        ], 
+    ],
     'languages': {
-        },
+    },
     'profSkills': {
         'Computer Science': '60',
         'Craft (Electrician)': '60',
@@ -265,7 +267,7 @@ computerScienceSkills = {
         'Craft (Microelectronics)': '40',
         'Science (Mathematics)': '40',
         'SIGINT': '40'
-        },
+    },
     'chooseSkills': {
         'Accounting': '50',
         'Bureaucracy': '50',
@@ -274,14 +276,14 @@ computerScienceSkills = {
         'Heavy Machinery': '50',
         'Law': '40',
         'Science': '40'
-        }       
+    }
 }
 
 federalAgentSkills = {
     'choices': [
-        ], 
+    ],
     'languages': {
-        },
+    },
     'profSkills': {
         'Alertness': '50',
         'Bureaucracy': '40',
@@ -294,21 +296,21 @@ federalAgentSkills = {
         'Persuade': '50',
         'Search': '50',
         'Unarmed Combat': '60'
-        },
+    },
     'chooseSkills': {
         'Accounting': '60',
         'Computer Science': '50',
         'Foreign Language': '50',
         'Heavy Weapons': '50',
         'Pharmacy': '50'
-        }       
+    }
 }
 
 criminalSkills = {
     'choices': [
-        ], 
+    ],
     'languages': {
-        },
+    },
     'profSkills': {
         'Alertness': '50',
         'Criminology': '60',
@@ -320,7 +322,7 @@ criminalSkills = {
         'Persuade': '50',
         'Stealth': '50',
         'Unarmed Combat': '50'
-        },
+    },
     'chooseSkills': {
         'Craft (Locksmithing)': '40',
         'Demolitions': '40',
@@ -331,14 +333,14 @@ criminalSkills = {
         'Navigate': '50',
         'Occult': '50',
         'Pharmacy': '40'
-        }       
+    }
 }
 
 physicianSkills = {
     'choices': [
-        ], 
+    ],
     'languages': {
-        },
+    },
     'profSkills': {
         'Bureaucracy': '50',
         'First Aid': '60',
@@ -347,27 +349,27 @@ physicianSkills = {
         'Pharmacy': '50',
         'Science (Biology)': '60',
         'Search': '40'
-        },
+    },
     'chooseSkills': {
         'Forensics': '50',
         'Psychotherapy': '60',
         'Science (Choose One)': '50',
         'Surgery': '50'
-        }       
+    }
 }
 
 scientistSkills = {
     'choices': [
-        ], 
+    ],
     'languages': {
-        },
+    },
     'profSkills': {
         'Bureaucracy': '40',
         'Computer Science': '40',
         'Science (choose one)': '60',
         'Science (choose another)': '50',
         'Science (choose one more)': '50',
-        },
+    },
     'chooseSkills': {
         'Accounting': '60',
         'Craft (choose one)': '40',
@@ -375,14 +377,14 @@ scientistSkills = {
         'Forensics': '40',
         'Law': '40',
         'Pharmacy': '40'
-        }       
+    }
 }
 
 specialOperatorSkills = {
     'choices': [
-        ], 
+    ],
     'languages': {
-        },
+    },
     'profSkills': {
         'Alertness': '60',
         'Athletics': '60',
@@ -396,16 +398,16 @@ specialOperatorSkills = {
         'Survival': '50',
         'Swim': '50',
         'Unarmed Combat': '60',
-        },
+    },
     'chooseSkills': {
-        }       
+    }
 }
 
 firefighterSkills = {
     'choices': [
-        ], 
+    ],
     'languages': {
-        },
+    },
     'profSkills': {
         'Alertness': '50',
         'Athletics': '60',
@@ -418,19 +420,19 @@ firefighterSkills = {
         'Heavy Machinery': '50',
         'Navigate': '50',
         'Search': '40',
-        },
+    },
     'chooseSkills': {
-        }       
+    }
 }
 
 foreignServiceOfficerSkills = {
     'choices': [
-        ], 
+    ],
     'languages': {
         'Foreign Language (choose one)': '50',
         'Foreign Language (choose another)': '50',
         'Foreign Language (choose one more)': '40',
-        },
+    },
     'profSkills': {
         'Accounting': '50',
         'Anthropology': '40',
@@ -439,19 +441,19 @@ foreignServiceOfficerSkills = {
         'HUMINT': '50',
         'Law': '40',
         'Persuade': '50',
-        },
+    },
     'chooseSkills': {
-        }       
+    }
 }
 
 intelligenceAnalystSkills = {
     'choices': [
-        ], 
+    ],
     'languages': {
         'Foreign Language (choose one)': '50',
         'Foreign Language (choose another)': '50',
         'Foreign Language (choose one more)': '40',
-        },
+    },
     'profSkills': {
         'Anthropology': '40',
         'Bureaucracy': '50',
@@ -460,38 +462,38 @@ intelligenceAnalystSkills = {
         'History': '40',
         'HUMINT': '50',
         'SIGINT': '40',
-        },
+    },
     'chooseSkills': {
-        }       
+    }
 }
 
 lawyerBusinessExecutiveSkills = {
     'choices': [
-        ], 
+    ],
     'languages': {
-        },
+    },
     'profSkills': {
         'Accounting': '40',
         'Bureaucracy': '50',
         'HUMINT': '50',
         'Persuade': '40',
-        },
+    },
     'chooseSkills': {
         'Computer Science': '50',
         'Criminology': '60',
         'Foreign Language (choose one)': '50',
         'Law': '50',
         'Pharmacy': '50',
-        }       
+    }
 }
 
 intelligenceCaseOfficerSkills = {
     'choices': [
-        ], 
+    ],
     'languages': {
         'Foreign Language (choose one)': '50',
         'Foreign Language (choose another)': '40',
-        },
+    },
     'profSkills': {
         'Alertness': '50',
         'Bureaucracy': '40',
@@ -504,9 +506,9 @@ intelligenceCaseOfficerSkills = {
         'SIGINT': '40',
         'Stealth': '50',
         'Unarmed Combat': '50',
-        },
+    },
     'chooseSkills': {
-        }       
+    }
 }
 
 mediaSpecialistSkills = {
@@ -515,14 +517,14 @@ mediaSpecialistSkills = {
         'Art (Journalism)': '60',
         'Art (Poetry)': '60',
         'Art (Scriptwriting)': '60',
-        }],  
+    }],
     'languages': {
-        },
+    },
     'profSkills': {
         'History': '40',
         'HUMINT': '40',
         'Persuade': '50',
-        },
+    },
     'chooseSkills': {
         'Anthropology': '40',
         'Archeology': '40',
@@ -535,14 +537,14 @@ mediaSpecialistSkills = {
         'Military Science (choose one)': '40',
         'Occult': '50',
         'Science (choose one)': '40',
-        }       
+    }
 }
 
 nurseParamedicSkills = {
     'choices': [
-        ],  
+    ],
     'languages': {
-        },
+    },
     'profSkills': {
         'Alertness': '40',
         'Bureaucracy': '40',
@@ -552,21 +554,21 @@ nurseParamedicSkills = {
         'Persuade': '40',
         'Pharmacy': '40',
         'Science (Biology)': '40',
-        },
+    },
     'chooseSkills': {
         'Drive': '60',
         'Forensics': '40',
         'Navigate': '50',
         'Psychotherapy': '50',
         'Search': '60',
-        }       
+    }
 }
 
 pilotSailorSkills = {
     'choices': [
-        ],  
+    ],
     'languages': {
-        },
+    },
     'profSkills': {
         'Alertness': '60',
         'Bureaucracy': '30',
@@ -576,20 +578,20 @@ pilotSailorSkills = {
         'Pilot (choose one)': '60',
         'Science (Meteorology)': '40',
         'Swim': '40',
-        },
+    },
     'chooseSkills': {
         'Foreign Language (choose one)': '50',
         'Pilot (choose another one)': '50',
         'Heavy Weapons': '50',
         'Military Science (choose one)': '50',
-        }      
+    }
 }
 
 policeOfficerSkills = {
     'choices': [
-        ],  
+    ],
     'languages': {
-        },
+    },
     'profSkills': {
         'Alertness': '60',
         'Bureaucracy': '40',
@@ -604,21 +606,21 @@ policeOfficerSkills = {
         'Persuade': '40',
         'Search': '40',
         'Unarmed Combat': '60',
-        },
+    },
     'chooseSkills': {
         'Forensics': '50',
         'Heavy Machinery': '60',
         'Heavy Weapons': '50',
         'Ride': '60',
-        }       
+    }
 }
 
 programManagerSkills = {
     'choices': [
-        ], 
+    ],
     'languages': {
         'Foreign Language (choose one)': '50'
-        },
+    },
     'profSkills': {
         'Accounting': '60',
         'Bureaucracy': '60',
@@ -626,20 +628,20 @@ programManagerSkills = {
         'History': '40',
         'Law': '40',
         'Persuade': '50'
-        },
+    },
     'chooseSkills': {
         'Anthropology': '30',
         'Art (choose one)': '30',
         'Craft (choose one)': '30',
         'Science (choose one)': '30'
-        }       
+    }
 }
 
 soldierMarineSkills = {
     'choices': [
-        ],  
+    ],
     'languages': {
-        },
+    },
     'profSkills': {
         'Alertness': '50',
         'Athletics': '50',
@@ -651,7 +653,7 @@ soldierMarineSkills = {
         'Navigate': '40',
         'Persuade': '30',
         'Unarmed Combat': '50',
-        },
+    },
     'chooseSkills': {
         'Artillery': '40',
         'Computer Science': '40',
@@ -663,7 +665,7 @@ soldierMarineSkills = {
         'Search': '60',
         'SIGINT': '40',
         'Swim': '60',
-        }       
+    }
 }
 
 anthroHisto = {'profSkill': anthropologistHistorianSkills,
@@ -685,22 +687,22 @@ fedAgent = {'profSkill': federalAgentSkills,
             }
 
 physician = {'profSkill': physicianSkills,
-            'numOfChoices': 2,
-            'bonds': 3,
-            'recStat': 'INT, POW, CON'
-            }
+             'numOfChoices': 2,
+             'bonds': 3,
+             'recStat': 'INT, POW, CON'
+             }
 
 scientist = {'profSkill': scientistSkills,
-            'numOfChoices': 3,
-            'bonds': 4,
-            'recStat': 'INT'
-            }
+             'numOfChoices': 3,
+             'bonds': 4,
+             'recStat': 'INT'
+             }
 
 specOp = {'profSkill': specialOperatorSkills,
-            'numOfChoices': 0,
-            'bonds': 2,
-            'recStat': 'STR, CON, POW'
-            }
+          'numOfChoices': 0,
+          'bonds': 2,
+          'recStat': 'STR, CON, POW'
+          }
 
 criminal = {'profSkill': criminalSkills,
             'numOfChoices': 2,
@@ -709,46 +711,46 @@ criminal = {'profSkill': criminalSkills,
             }
 
 firefighter = {'profSkill': firefighterSkills,
-            'numOfChoices': 0,
-            'bonds': 3,
-            'recStat': 'STR, DEX, CON'
-            }
+               'numOfChoices': 0,
+               'bonds': 3,
+               'recStat': 'STR, DEX, CON'
+               }
 
 fso = {'profSkill': foreignServiceOfficerSkills,
-            'numOfChoices': 0,
-            'bonds': 3,
-            'recStat': 'INT, CHA'
-            }
+       'numOfChoices': 0,
+       'bonds': 3,
+       'recStat': 'INT, CHA'
+       }
 
 intelAnal = {'profSkill': intelligenceAnalystSkills,
-            'numOfChoices': 0,
-            'bonds': 3,
-            'recStat': 'INT'
-            }
+             'numOfChoices': 0,
+             'bonds': 3,
+             'recStat': 'INT'
+             }
 
 lawExec = {'profSkill': lawyerBusinessExecutiveSkills,
-            'numOfChoices': 4,
-            'bonds': 4,
-            'recStat': 'INT, CHA'
-            }
+           'numOfChoices': 4,
+           'bonds': 4,
+           'recStat': 'INT, CHA'
+           }
 
 ico = {'profSkill': intelligenceCaseOfficerSkills,
-            'numOfChoices': 0,
-            'bonds': 2,
-            'recStat': 'INT, POW, CHA'
-            }
+       'numOfChoices': 0,
+       'bonds': 2,
+       'recStat': 'INT, POW, CHA'
+       }
 
 medSpec = {'profSkill': mediaSpecialistSkills,
-            'numOfChoices': 5,
-            'bonds': 4,
-            'recStat': 'INT, CHA'
-            }
+           'numOfChoices': 5,
+           'bonds': 4,
+           'recStat': 'INT, CHA'
+           }
 
 nursePara = {'profSkill': nurseParamedicSkills,
-            'numOfChoices': 2,
-            'bonds': 4,
-            'recStat': 'INT, POW, CHA'
-            }
+             'numOfChoices': 2,
+             'bonds': 4,
+             'recStat': 'INT, POW, CHA'
+             }
 
 piloSail = {'profSkill': pilotSailorSkills,
             'numOfChoices': 2,
@@ -757,10 +759,10 @@ piloSail = {'profSkill': pilotSailorSkills,
             }
 
 police = {'profSkill': policeOfficerSkills,
-            'numOfChoices': 1,
-            'bonds': 3,
-            'recStat': 'STR, CON, POW'
-            }
+          'numOfChoices': 1,
+          'bonds': 3,
+          'recStat': 'STR, CON, POW'
+          }
 
 progMana = {'profSkill': programManagerSkills,
             'numOfChoices': 1,
@@ -769,20 +771,20 @@ progMana = {'profSkill': programManagerSkills,
             }
 
 soldier = {'profSkill': soldierMarineSkills,
-            'numOfChoices': 3,
-            'bonds': 4,
-            'recStat': 'STR, CON'
-            }
+           'numOfChoices': 3,
+           'bonds': 4,
+           'recStat': 'STR, CON'
+           }
 
 statArray = []
 
 statPoints = 72
 
 inventory = ['Glock 19 (Medium Pistol)', 'First Aid Kit', 'Self-Applying Tourniquet',
-          'Hemostatic Gel', 'Clothes', 'Boxes of Ammunition', 'S&W Model 36 (Light Pistol)',
-          'Extra Pistol Magazines', 'Flashlight', 'Folding Knife (Knife)', 'Basic Tools',
-          'Doorstops', 'Chalk', 'Bottled Water', 'Energy Bars', 'Batteries', 'Sunscreen',
-          'Antibacterial Gel', 'Dufflebag or Backpack']
+             'Hemostatic Gel', 'Clothes', 'Boxes of Ammunition', 'S&W Model 36 (Light Pistol)',
+             'Extra Pistol Magazines', 'Flashlight', 'Folding Knife (Knife)', 'Basic Tools',
+             'Doorstops', 'Chalk', 'Bottled Water', 'Energy Bars', 'Batteries', 'Sunscreen',
+             'Antibacterial Gel', 'Dufflebag or Backpack']
 
 listOfMotivations = ['Exploiting the unnatural', 'Recognition for achievements',
                      'Showing others how its done', 'Correcting past mistakes',
@@ -839,7 +841,7 @@ listOfDisorders = ['Amnesia', 'Depersonalization Disorder', 'Depression',
 def mergeDictsReplace(dict1, dict2):
     for key in dict2:
         if key in dict1:
-            dict2[key] = int(dict1[key])# + int(dict2[key])
+            dict2[key] = int(dict1[key])  # + int(dict2[key])
             del dict1[key]
     dict2.update(dict1)
     return dict2
@@ -852,6 +854,7 @@ def mergeDicts(dict1, dict2):
             del dict1[key]
     dict2.update(dict1)
     return dict2
+
 
 def spendBonusPoints(listOfSkills):
     startingPoints = 160
@@ -875,13 +878,13 @@ def spendBonusPoints(listOfSkills):
             continue
 
         choice = choice - 1
-        
+
         if choice < len(listOfSkills):
             chosenSkill = listOfSkills[choice]
         else:
             print("Please input a smaller number.")
             continue
-        
+
         if chosenSkill in skillsDict.keys():
             specialSkill = skillsDict[chosenSkill] + spentPoints
             if specialSkill <= 80:
@@ -892,7 +895,7 @@ def spendBonusPoints(listOfSkills):
             if skillsDict[chosenSkill] > 80:
                 print("Please choose a different skill. Can't exceed 80% right now.")
                 continue
-        
+
         statValue = int(sheet.get(skillDict[chosenSkill]).replace('%', ''))
         statValue = statValue + spentPoints
 
@@ -912,16 +915,16 @@ def spendBonusPoints(listOfSkills):
 
     for item in removalList:
         skillsDict.pop(item)
-   
+
     return skillsDict
 
-        
+
 def printFromList(inputList):
     i = 1
     for item in inputList:
         print(str(i) + ". " + item)
         i += 1
-    
+
 
 def printBonusSkills(skillPackages):
     i = 1
@@ -929,12 +932,13 @@ def printBonusSkills(skillPackages):
         print(str(i) + ". " + key + ': \n' + ', '.join([str(elem) for elem in skillPackages[key]]) + '\n')
         i += 1
 
+
 def printSkills(chosenSkills):
     i = 1
     for skill in chosenSkills:
         print(str(i) + ". " + skill)
         i += 1
-    
+
 
 def setBonusSkills(skillPackages):
     print("\nSelect a bonus skill package to put points into\n")
@@ -957,14 +961,17 @@ def setBonusSkills(skillPackages):
 
     return list(skillPackages.keys())[choice]
 
+
 def getPackageSkills(skillPackages, choice):
     print("You've chosen: " + choice)
     return skillPackages[choice]
- 
+
+
 def randomStat():
-    Stat = sum(sorted([random.randint(1,6) for x in range(4)])[1:])
+    Stat = sum(sorted([random.randint(1, 6) for x in range(4)])[1:])
     return Stat
- 
+
+
 def setSkillValue(skillDict, choice, amount):
     iterator = 4
     skills = list(skillDict.keys())
@@ -990,31 +997,35 @@ def setSkillValue(skillDict, choice, amount):
         else:
             print("Please try again!")
             continue
- 
+
+
 def setStatArray():
     statArray = []
     for loops in range(6):
         stat = randomStat()
         statArray.append(stat)
-        statArray.sort(reverse = True)
+        statArray.sort(reverse=True)
     return statArray
- 
+
+
 def compareDicts(skillDict, profDict):
     listOfSkills = []
     for key in skillDict.keys():
-        
+
         if key not in profDict.keys():
             listOfSkills.append(key)
- 
+
         setSheetValue(skillDict, key, str(profDict[key]) + "%")
-        
- 
+
+
 def setSheetValue(dictName, dictKey, sheetValue):
     sheet[dictName[dictKey]] = sheetValue
 
+
 def setSheetName(cellKey, value):
     sheet[cellKey] = value
- 
+
+
 def setSkills(skillDict, profDict):
     iterator = 1
     cellIterator = 35
@@ -1029,24 +1040,27 @@ def setSkills(skillDict, profDict):
             cellIterator += 1
             setSheetName(cellKey, value)
             setSheetValue(skillDict, key, str(profDict[value]) + '%')
-            
+
     cellIterator += 1
-    
- 
+
+
 def setSpentPoints(amount):
     global statPoints
     statPoints -= amount
- 
+
+
 def updateStatList(choice):
     if choice in statList:
         statList.remove(choice)
- 
+
+
 def setStatValue(statName, amount):
     if statName in statList:
         sheet[statDict[statName]] = amount
     if statName not in statList:
         choice = input("Please choose from: " + str(statList) + "!\n")
         setStatValue(choice, amount)
+
 
 def setSheetStatValue(statArray):
     while True:
@@ -1067,26 +1081,26 @@ def setSheetStatValue(statArray):
         sheet[statDict[statChoice]] = statArray[0]
         updateStatList(statChoice)
         break
-    
-    
-        
+
+
 ##def resetStats(statArray):
 ##     while len(statArray) > 0:
 ##            for stat in statList:
 ##                setSheetStatValue(statArray)
 ##                updateStatList(stat)
 ##                statArray.pop(0)
-            
+
 def setStatDistribution(statArray):
     while len(statArray) > 0:
-            print("\nPlease choose from the following:")
-            i = 1
-            for item in statList:
-                print(str(i) + ". " + item)
-                i += 1
-            setSheetStatValue(statArray)
-            statArray.pop(0)
- 
+        print("\nPlease choose from the following:")
+        i = 1
+        for item in statList:
+            print(str(i) + ". " + item)
+            i += 1
+        setSheetStatValue(statArray)
+        statArray.pop(0)
+
+
 def handleRandomStats():
     statArray = setStatArray()
     print('Your stats are: ' + str(statArray) + " which totals " + str(sum(statArray)))
@@ -1098,17 +1112,19 @@ def handleRandomStats():
             break
         if choice.lower() == "n":
             handleRandomStats()
-##        else:
-##            print("Please select Y or N")
-##            continue
-            
+    ##        else:
+    ##            print("Please select Y or N")
+    ##            continue
+
     return statArray
-            
+
+
 def printListedProfessions():
     i = 0
     while i < len(listOfProfessions):
         print(str(i + 1) + ". " + listOfProfessions[i])
         i += 1
+
 
 def affirm():
     print("\nAre you sure? Y/N")
@@ -1119,6 +1135,7 @@ def affirm():
         return False
     else:
         print("Please input Y or N")
+
 
 def printProfessionInfo(profSkill, numOfChoices, bonds, recStat):
     iterator = 1
@@ -1133,7 +1150,7 @@ def printProfessionInfo(profSkill, numOfChoices, bonds, recStat):
         iterator += 1
     print("\nYou'll have " + str(bonds) + " bonds")
     print("\nThis profession's recommended stats are: " + recStat)
-    
+
 
 def confirmSelection(userChoice):
     if userChoice == "Anthropologist" or userChoice == "Historian":
@@ -1149,7 +1166,7 @@ peoples.''')
             return setProfessionSkills(**anthroHisto)
         else:
             return confirmSelection(getProfessionSelection(listOfProfessions))
-        
+
     if userChoice == "Computer Scientist" or userChoice == "Engineer":
         print('''Computers and machinery are the backbone of
 modern industry. You are a craftsman with data or
@@ -1343,7 +1360,7 @@ most startling things in their pursuit of profit or the public good.''')
             return setProfessionSkills(**progMana)
         else:
             return confirmSelection(getProfessionSelection(listOfProfessions))
-        
+
     if userChoice == "Soldier" or userChoice == "Marine":
         print('''Governments will always need boots on the ground and
 steady hands holding rifles. When war begins, civilization
@@ -1354,9 +1371,9 @@ began in the military.''')
         if affirm():
             return setProfessionSkills(**soldier)
         else:
-            return confirmSelection(getProfessionSelection(listOfProfessions))   
-        
-       
+            return confirmSelection(getProfessionSelection(listOfProfessions))
+
+
 def getProfessionSelection(profList):
     printListedProfessions()
     print("\nPlease select a profession by number:")
@@ -1377,18 +1394,20 @@ def getProfessionSelection(profList):
 
     print("\nYou have chosen: " + userChoice)
     return userChoice
- 
+
+
 def setProfessionStats(profChoice):
     print("You have chosen: " + profChoice)
+
 
 def setProfessionSkills(profSkill, numOfChoices, bonds, recStat):
     dictOfSkillAssigns = {}
     skillsList = []
     iterator = 1
-    
+
     for choices in profSkill.get('choices'):
         listOfChoices = list(choices.keys())
-        
+
         for item in listOfChoices:
             print(str(iterator) + ". " + item)
             iterator += 1
@@ -1405,7 +1424,7 @@ def setProfessionSkills(profSkill, numOfChoices, bonds, recStat):
             except:
                 print("Please try a different number.")
                 continue
-            
+
             if choice < len(listOfChoices):
                 print("You've chosen " + userChoice + ": " + choices[userChoice])
                 dictOfSkillAssigns.update({userChoice: choices[userChoice]})
@@ -1414,7 +1433,7 @@ def setProfessionSkills(profSkill, numOfChoices, bonds, recStat):
                 print('Please enter the correct skill name.')
 
     iterator = 1
-                
+
     for language in list(profSkill['languages'].items()):
         print('Please choose ' + language[0])
         choice = input()
@@ -1430,7 +1449,7 @@ def setProfessionSkills(profSkill, numOfChoices, bonds, recStat):
             skillsList.append(skill[0])
             print(str(iterator) + ". " + skill[0] + ": " + skill[1])
             iterator += 1
-        
+
     while numOfChoices > 0:
         choice = input()
         try:
@@ -1444,19 +1463,20 @@ def setProfessionSkills(profSkill, numOfChoices, bonds, recStat):
         except:
             print("Please try a different number.")
             continue
-        
+
         if choice < len(skillsList):
             dictOfSkillAssigns.update({userChoice: profSkill['chooseSkills'][userChoice]})
             numOfChoices -= 1
             if numOfChoices == 0:
                 break
             print("You chose " + userChoice + " please select " + str(numOfChoices) + " more.")
-            
+
         else:
             print("Please enter the correct skill number.")
-            
+
     print("\nUpdating values on character sheet, please wait...")
     return dictOfSkillAssigns
+
 
 def resetSkills():
     print("Resetting stats...")
@@ -1542,12 +1562,8 @@ def resetSkills():
         keyIterator += 1
         indexIterator += 1
         sheet[key] = item
-        
-    
-        
-    
-        
-        
+
+
 def pointBuy(points):
     spentPoints = getSpentPoints(points)
     chosenStat = getChosenStat(spentPoints)
@@ -1556,11 +1572,13 @@ def pointBuy(points):
     setSpentPoints(int(spentPoints))
     return int(spentPoints)
 
+
 def handlePointBuy(statPoints):
     currentPoints = statPoints
     while currentPoints > 0:
         points = pointBuy(currentPoints)
         currentPoints -= points
+
 
 def getSpentPoints(points):
     print("You have " + str(points) + " points. How many would you like to spend?\n")
@@ -1578,6 +1596,7 @@ def getSpentPoints(points):
         else:
             print("Please try again")
 
+
 def handleStandardArray():
     statArray = []
     print("\nPlease select from the following arrays:")
@@ -1594,21 +1613,25 @@ def handleStandardArray():
         statArray = [17, 14, 12, 10, 10, 9]
     setStatDistribution(statArray)
 
+
 def getChosenStat(points):
     print("What stat would you like to put " + str(points) + " into?\nPlease choose from " + str(statList) + "\n")
     chosenStat = input()
     return chosenStat
 
+
 def handleDerivedStats():
     getStrCon = int(sheet['C8']) + int(sheet['C9'])
     dividedStrCon = float(getStrCon / 2)
     multipliedPow = int(sheet['C12'] * 5)
-    getSanPow = int(multipliedPow - int(sheet['C12'])) 
+    getSanPow = int(multipliedPow - int(sheet['C12']))
     print("This is handled by the sheet but we will double check.")
-    print("HP is equal to STR + CON (" + str(getStrCon) + ") divided by 2 (" + str(dividedStrCon) + ") rounded up (" + str(round(dividedStrCon)) + ") ")
+    print("HP is equal to STR + CON (" + str(getStrCon) + ") divided by 2 (" + str(
+        dividedStrCon) + ") rounded up (" + str(round(dividedStrCon)) + ") ")
     print("WP is equal to POW (" + str(sheet['C12']) + ") ")
     print("SAN is equal to POW x 5 (" + str(multipliedPow) + ") ")
     print("BP is equal to SAN - POW (" + str(getSanPow) + ") ")
+
 
 def handleStatistics():
     options = [1, 2, 3, 4]
@@ -1633,16 +1656,18 @@ def handleStatistics():
             if choice == 4:
                 resetSkills()
                 quit()
-                    
+
         if choice not in options:
             print("Please input a number on the list")
-            
+
+
 def printBonds(profName, profDict):
     print("\nAs a " + profName + " you have " + str(profDict['bonds']) + " bonds.")
 
+
 def getBondsChoice(userChoice, profDict):
     printBonds(userChoice, profDict)
-    
+
     print("\nWould you like to choose your bonds or create random bonds?")
     print("1. Random")
     print("2. Chosen")
@@ -1653,7 +1678,7 @@ def getBondsChoice(userChoice, profDict):
         except:
             print("Please input 1 or 2.")
             continue
-        
+
         if choice == 1:
             print("\nYou have chosen to have random bonds.")
             setBondsRandom(profDict['bonds'])
@@ -1663,8 +1688,10 @@ def getBondsChoice(userChoice, profDict):
             setBondsChosen(profDict['bonds'])
             break
 
+
 def getRandomBond():
     return random.choice(listOfBonds)
+
 
 def setRandomMotivations():
     keyIterator = 16
@@ -1674,6 +1701,7 @@ def setRandomMotivations():
         sheet[key] = random.choice(listOfMotivations)
         keyIterator += 1
         i -= 1
+
 
 def setBondsChosen(bonds):
     keyIterator = 1
@@ -1688,7 +1716,8 @@ def setBondsChosen(bonds):
         setSheetValue(bondsScoreDict, scoreKey, score)
         keyIterator += 1
         bonds -= 1
-            
+
+
 def setBondsRandom(bonds):
     keyIterator = 1
     score = sheet.get('C13')
@@ -1700,13 +1729,14 @@ def setBondsRandom(bonds):
         keyIterator += 1
         bonds -= 1
 
+
 def handleBonds(userChoice):
     if userChoice == "Anthropologist" or userChoice == "Historian":
         getBondsChoice(userChoice, anthroHisto)
-        
+
     if userChoice == "Computer Scientist" or userChoice == "Engineer":
         getBondsChoice(userChoice, compSciHack)
-        
+
     if userChoice == "Federal Agent":
         getBondsChoice(userChoice, fedAgent)
 
@@ -1751,9 +1781,10 @@ def handleBonds(userChoice):
 
     if userChoice == "Program Manager":
         getBondsChoice(userChoice, progMana)
-        
+
     if userChoice == "Soldier" or userChoice == "Marine":
         getBondsChoice(userChoice, soldier)
+
 
 def setEmployer():
     print("\nPlease select an employer from this list:")
@@ -1775,6 +1806,7 @@ def setEmployer():
         else:
             print("Your choice was not on the list!")
             continue
+
 
 def handleLoadout():
     print("\nDo you want a default loadout? It includes:")
@@ -1801,7 +1833,7 @@ def handleLoadout():
             keyIterator += 1
             indexIterator += 1
             sheet[key] = item
-            
+
         sheet['J3'] = "Medium Pistol"
         sheet['J4'] = "Light Pistol"
         sheet['J5'] = "Knife"
@@ -1817,6 +1849,7 @@ def setDOB():
     sheet['H5'] = birthday
     return birthday
 
+
 def setBio(background, profession, veteranStatus):
     STR = int(sheet.get('C8'))
     CON = int(sheet.get('C9'))
@@ -1824,16 +1857,16 @@ def setBio(background, profession, veteranStatus):
     INT = int(sheet.get('C11'))
     POW = int(sheet.get('C12'))
     CHA = int(sheet.get('C13'))
-    
+
     bio = "At a glance, people notice your "
-    
+
     if STR < 4:
         bio = bio + "feeble and "
-    if STR  < 8:
+    if STR < 8:
         bio = bio + "weak body."
     if STR >= 9 and STR <= 12:
         bio = bio + "completely forgettable, unremarkably-average build."
-    if STR  > 12:
+    if STR > 12:
         bio = bio + "muscles are rippling"
     if STR > 17:
         bio = bio + " and huge."
@@ -1842,11 +1875,11 @@ def setBio(background, profession, veteranStatus):
 
     if CON < 4:
         bio = bio + "leaves you bedridden and "
-    if CON  < 8:
+    if CON < 8:
         bio = bio + "feels sickly."
     if CON >= 9 and CON <= 12:
         bio = bio + "meets the standards of an average adult. Heartbeat, breathing, most limbs, and all that."
-    if CON  > 12:
+    if CON > 12:
         bio = bio + "is in perfect shape"
     if CON > 17:
         bio = bio + " and indefatigable."
@@ -1859,7 +1892,7 @@ def setBio(background, profession, veteranStatus):
         bio = bio + "clumsy."
     if DEX >= 9 and DEX <= 12:
         bio = bio + "on par with most folks your age. You probably shouldn't bend over too fast though."
-    if DEX  > 12:
+    if DEX > 12:
         bio = bio + "nimble"
     if DEX > 17:
         bio = bio + " and acrobatic."
@@ -1905,7 +1938,7 @@ def setBio(background, profession, veteranStatus):
 
     bio = bio + " You spent some years working as a " + background + "."
     bio = bio + " After a while, you transitioned into becoming a " + profession + "."
-    
+
     if veteranStatus == "None":
         bio = bio + " Some time recently, you were contacted to join Delta Green. You're not a damaged veteran but don't be fueled, time in the field is measured in trauma, not hours."
     if veteranStatus == "Extreme Violence":
@@ -1919,7 +1952,8 @@ def setBio(background, profession, veteranStatus):
 
     print("\nYour bio is:\n" + bio)
     return bio
-        
+
+
 def handleFinalizing(background, profession, veteranStatus):
     sheet['C4'] = profession
     choice = input("\nWhat's your character's real name?\n")
@@ -1935,8 +1969,10 @@ def handleFinalizing(background, profession, veteranStatus):
     print("\nYour date of birth is: " + DOB + " you may need to modify this a bit.\n")
     sheet['J40'] = setBio(background, profession, veteranStatus)
 
+
 listOfVeterans = ['Extreme Violence', 'Captivity or Imprisonment',
                   'Hard Experience', 'Things Man Was Not Meant To Know']
+
 
 def getVeteranType():
     print("What kind of trauma did you experience?:")
@@ -1959,7 +1995,7 @@ def getVeteranType():
         else:
             print("Your choice was not on the list!")
             continue
-        
+
 
 def handleVeteranType(choice):
     if choice == "Extreme Violence":
@@ -2024,6 +2060,7 @@ Point to his or her new SAN minus POW..''')
 def setRandomDisorder():
     sheet['E21'] = random.choice(listOfDisorders)
 
+
 def getVeteranStatus():
     print("\nIs your character a damaged veteran? Y/N")
     while True:
@@ -2044,7 +2081,7 @@ def getVeteranStatus():
 if __name__ == "__main__":
     print("\nStep 1: Determine Statistics")
     handleStatistics()
-            
+
     print("\nStep 2: Calculate Derived Attributes")
     handleDerivedStats()
 
@@ -2059,7 +2096,7 @@ if __name__ == "__main__":
 
     print("\nStep 4: Define Bonds")
     handleBonds(professionSelection)
-                   
+
     print("\nStep 5: Finalizing Your Character")
     veteranStatus = getVeteranStatus()
     handleFinalizing(backgroundSelection, professionSelection, veteranStatus)
