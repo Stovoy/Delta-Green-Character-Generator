@@ -1,10 +1,10 @@
 import random
+import textwrap
 
 from cli import CLI
 from sheet import Sheet
+import data
 from data import *
-
-sheet = Sheet()
 
 
 def merge_dicts_replace(dict1, dict2):
@@ -225,53 +225,6 @@ def set_stat_value(stat_name, amount):
     if stat_name not in stat_list:
         choice = input("Please choose from: " + str(stat_list) + "!\n")
         set_stat_value(choice, amount)
-
-
-def set_sheet_stat_value(stat_array):
-    while True:
-        choice = input("\nWhere would you like to place: " + str(stat_array[0]) + "?\n")
-        try:
-            choice = int(choice)
-        except ValueError:
-            print("Please input a number.")
-            continue
-        stat_index = choice - 1
-        try:
-            stat_choice = stat_list[stat_index]
-            print(stat_choice)
-        except IndexError:
-            print("\nYour number isn't on the list. Try again")
-            continue
-
-        sheet[stat_dict[stat_choice]] = stat_array[0]
-        update_stat_list(stat_choice)
-        break
-
-
-def set_stat_distribution(stat_array):
-    while len(stat_array) > 0:
-        print("\nPlease choose from the following:")
-        i = 1
-        for item in stat_list:
-            print(str(i) + ". " + item)
-            i += 1
-        set_sheet_stat_value(stat_array)
-        stat_array.pop(0)
-
-
-def handle_random_stats():
-    stat_array = set_stat_array()
-    print('Your stats are: ' + str(stat_array) + " which totals " + str(sum(stat_array)))
-    print('Are you satisfied? Y to continue, N to reroll\n')
-    while True:
-        choice = input()
-        if choice.lower() == "y":
-            set_stat_distribution(stat_array)
-            break
-        if choice.lower() == "n":
-            return handle_random_stats()
-
-    return stat_array
 
 
 def print_listed_professions():
@@ -1188,40 +1141,70 @@ class Generator:
     def __init__(self):
         self.sheet = Sheet()
         self.ui = CLI()
+        self.stat_array = []
+        self.stat_points = 72
 
         self.profession_selection = None
         self.background_selection = None
 
     def run(self):
-        self.step(1, "Determine Statistics", self.step_statistics)
+        self.step(1, "Determine Stats", self.step_stats)
         self.step(2, "Calculate Derived Attributes", self.step_derived_stats)
         self.step(3, "Select Profession & Skills", self.step_profession_and_skills)
         self.step(4, "Define Bonds", self.step_define_bonds)
         self.step(5, "Finalizing Your Character", self.step_finalize)
 
-    def step(self, index, name, f):
+    def step(self, index, name, fn):
         self.ui.display_step(index, name)
-        f()
+        fn()
 
-    def step_statistics(self):
-        self.ui.prompt_choice((
-            ('Roll', handle_random_stats),
+    def step_stats(self):
+        self.ui.prompt_choice('Choose your stats', (
+            ('Roll', self.set_random_stats),
             ('Point buy', lambda: handle_point_buy(stat_points)),
             ('Array', handle_standard_array),
             ('Reset Sheet', reset_skills),
         ))
 
+    def set_random_stats(self):
+        self.stat_array = set_stat_array()
+        print(f'Your stats are {self.stat_array} which totals {sum(self.stat_array)}')
+        self.ui.prompt_yes_no(
+            'Are you satisfied with these stats?',
+            self.set_stat_distribution,
+            self.set_random_stats,
+        )
+
+    def set_stat_distribution(self):
+        stat_list = data.stat_list
+
+        def choose(stat_choice):
+            self.ui.info(f'Placed {value} points into {stat_choice}')
+            self.sheet[data.stat_dict[stat_choice]] = value
+            stat_list.remove(stat_choice)
+
+        while self.stat_array:
+            value = self.stat_array.pop(0)
+            choices = []
+            for stat in stat_list:
+                choices.append((stat, lambda stat=stat: choose(stat)))
+            self.ui.prompt_choice(f'Choose where to place {value} stat points', choices)
+
     def step_derived_stats(self):
-        get_str_con = int(sheet['C8']) + int(sheet['C9'])
+        get_str_con = int(self.sheet['C8']) + int(self.sheet['C9'])
         divided_str_con = float(get_str_con / 2)
-        multiplied_pow = int(sheet['C12'] * 5)
-        get_san_pow = int(multiplied_pow - int(sheet['C12']))
-        print("This is handled by the sheet but we will double check.")
-        print(f"HP is equal to STR + CON ({get_str_con}) divided by 2 "
-              f"({divided_str_con}) rounded up ({round(divided_str_con)})")
-        print(f"WP is equal to POW ({sheet['C12']})")
-        print(f"SAN is equal to POW x 5 ({multiplied_pow})")
-        print(f"BP is equal to SAN - POW ({get_san_pow})")
+        multiplied_pow = int(self.sheet['C12'] * 5)
+        get_san_pow = int(multiplied_pow - int(self.sheet['C12']))
+        self.ui.info((textwrap.dedent(f"""
+            This is handled by the sheet but we will double check.
+
+            HP is equal to STR + CON ({get_str_con}) divided by 2 and rounded up ({round(divided_str_con)})
+            WP is equal to POW ({self.sheet["C12"]})
+            SAN is equal to POW * 5 ({multiplied_pow})
+            BP is equal to SAN - POW ({get_san_pow})
+        """)))
+
+        self.ui.prompt_continue()
 
     def step_profession_and_skills(self):
         self.profession_selection = get_profession_selection(list_of_professions)
@@ -1240,9 +1223,9 @@ class Generator:
         handle_finalizing(self.background_selection, self.profession_selection, veteran_status)
         handle_loadout()
         self.sheet.save()
-        print("Saved as output.xlsx")
+        print('Saved as output.xlsx')
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     generator = Generator()
     generator.run()

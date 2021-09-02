@@ -787,10 +787,6 @@ soldier = {
     'rec_stat': 'STR, CON'
 }
 
-stat_array = []
-
-stat_points = 72
-
 inventory = ['Glock 19 (Medium Pistol)', 'First Aid Kit', 'Self-Applying Tourniquet',
              'Hemostatic Gel', 'Clothes', 'Boxes of Ammunition', 'S&W Model 36 (Light Pistol)',
              'Extra Pistol Magazines', 'Flashlight', 'Folding Knife (Knife)', 'Basic Tools',
