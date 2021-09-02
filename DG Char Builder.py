@@ -668,113 +668,131 @@ soldierMarineSkills = {
     }
 }
 
-anthroHisto = {'profSkill': anthropologistHistorianSkills,
-               'numOfChoices': 2,
-               'bonds': 4,
-               'recStat': 'INT'
-               }
+anthroHisto = {
+    'profSkill': anthropologistHistorianSkills,
+    'numOfChoices': 2,
+    'bonds': 4,
+    'recStat': 'INT'
+}
 
-compSciHack = {'profSkill': computerScienceSkills,
-               'numOfChoices': 4,
-               'bonds': 3,
-               'recStat': 'INT'
-               }
+compSciHack = {
+    'profSkill': computerScienceSkills,
+    'numOfChoices': 4,
+    'bonds': 3,
+    'recStat': 'INT'
+}
 
-fedAgent = {'profSkill': federalAgentSkills,
-            'numOfChoices': 1,
-            'bonds': 3,
-            'recStat': 'CON, POW, CHA'
-            }
+fedAgent = {
+    'profSkill': federalAgentSkills,
+    'numOfChoices': 1,
+    'bonds': 3,
+    'recStat': 'CON, POW, CHA'
+}
 
-physician = {'profSkill': physicianSkills,
-             'numOfChoices': 2,
-             'bonds': 3,
-             'recStat': 'INT, POW, CON'
-             }
+physician = {
+    'profSkill': physicianSkills,
+    'numOfChoices': 2,
+    'bonds': 3,
+    'recStat': 'INT, POW, CON'
+}
 
-scientist = {'profSkill': scientistSkills,
-             'numOfChoices': 3,
-             'bonds': 4,
-             'recStat': 'INT'
-             }
+scientist = {
+    'profSkill': scientistSkills,
+    'numOfChoices': 3,
+    'bonds': 4,
+    'recStat': 'INT'
+}
 
-specOp = {'profSkill': specialOperatorSkills,
-          'numOfChoices': 0,
-          'bonds': 2,
-          'recStat': 'STR, CON, POW'
-          }
+specOp = {
+    'profSkill': specialOperatorSkills,
+    'numOfChoices': 0,
+    'bonds': 2,
+    'recStat': 'STR, CON, POW'
+}
 
-criminal = {'profSkill': criminalSkills,
-            'numOfChoices': 2,
-            'bonds': 4,
-            'recStat': 'STR, DEX'
-            }
+criminal = {
+    'profSkill': criminalSkills,
+    'numOfChoices': 2,
+    'bonds': 4,
+    'recStat': 'STR, DEX'
+}
 
-firefighter = {'profSkill': firefighterSkills,
-               'numOfChoices': 0,
-               'bonds': 3,
-               'recStat': 'STR, DEX, CON'
-               }
+firefighter = {
+    'profSkill': firefighterSkills,
+    'numOfChoices': 0,
+    'bonds': 3,
+    'recStat': 'STR, DEX, CON'
+}
 
-fso = {'profSkill': foreignServiceOfficerSkills,
-       'numOfChoices': 0,
-       'bonds': 3,
-       'recStat': 'INT, CHA'
-       }
+fso = {
+    'profSkill': foreignServiceOfficerSkills,
+    'numOfChoices': 0,
+    'bonds': 3,
+    'recStat': 'INT, CHA'
+}
 
-intelAnal = {'profSkill': intelligenceAnalystSkills,
-             'numOfChoices': 0,
-             'bonds': 3,
-             'recStat': 'INT'
-             }
+intelAnal = {
+    'profSkill': intelligenceAnalystSkills,
+    'numOfChoices': 0,
+    'bonds': 3,
+    'recStat': 'INT'
+}
 
-lawExec = {'profSkill': lawyerBusinessExecutiveSkills,
-           'numOfChoices': 4,
-           'bonds': 4,
-           'recStat': 'INT, CHA'
-           }
+lawExec = {
+    'profSkill': lawyerBusinessExecutiveSkills,
+    'numOfChoices': 4,
+    'bonds': 4,
+    'recStat': 'INT, CHA'
+}
 
-ico = {'profSkill': intelligenceCaseOfficerSkills,
-       'numOfChoices': 0,
-       'bonds': 2,
-       'recStat': 'INT, POW, CHA'
-       }
+ico = {
+    'profSkill': intelligenceCaseOfficerSkills,
+    'numOfChoices': 0,
+    'bonds': 2,
+    'recStat': 'INT, POW, CHA'
+}
 
-medSpec = {'profSkill': mediaSpecialistSkills,
-           'numOfChoices': 5,
-           'bonds': 4,
-           'recStat': 'INT, CHA'
-           }
+medSpec = {
+    'profSkill': mediaSpecialistSkills,
+    'numOfChoices': 5,
+    'bonds': 4,
+    'recStat': 'INT, CHA'
+}
 
-nursePara = {'profSkill': nurseParamedicSkills,
-             'numOfChoices': 2,
-             'bonds': 4,
-             'recStat': 'INT, POW, CHA'
-             }
+nursePara = {
+    'profSkill': nurseParamedicSkills,
+    'numOfChoices': 2,
+    'bonds': 4,
+    'recStat': 'INT, POW, CHA'
+}
 
-piloSail = {'profSkill': pilotSailorSkills,
-            'numOfChoices': 2,
-            'bonds': 3,
-            'recStat': 'DEX, INT'
-            }
+piloSail = {
+    'profSkill': pilotSailorSkills,
+    'numOfChoices': 2,
+    'bonds': 3,
+    'recStat': 'DEX, INT'
+}
 
-police = {'profSkill': policeOfficerSkills,
-          'numOfChoices': 1,
-          'bonds': 3,
-          'recStat': 'STR, CON, POW'
-          }
+police = {
+    'profSkill': policeOfficerSkills,
+    'numOfChoices': 1,
+    'bonds': 3,
+    'recStat': 'STR, CON, POW'
+}
 
-progMana = {'profSkill': programManagerSkills,
-            'numOfChoices': 1,
-            'bonds': 4,
-            'recStat': 'INT, CHA'
-            }
+progMana = {
+    'profSkill': programManagerSkills,
+    'numOfChoices': 1,
+    'bonds': 4,
+    'recStat': 'INT, CHA'
+}
 
-soldier = {'profSkill': soldierMarineSkills,
-           'numOfChoices': 3,
-           'bonds': 4,
-           'recStat': 'STR, CON'
-           }
+soldier = {
+    'profSkill': soldierMarineSkills,
+    'numOfChoices': 3,
+    'bonds': 4,
+    'recStat': 'STR, CON'
+}
 
 statArray = []
 
