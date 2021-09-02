@@ -1,6 +1,6 @@
-statList = ['STR', 'CON', 'DEX', 'INT', 'POW', 'CHA']
+stat_list = ['STR', 'CON', 'DEX', 'INT', 'POW', 'CHA']
 
-statDict = {
+stat_dict = {
     'STR': 'C8',
     'CON': 'C9',
     'DEX': 'C10',
@@ -9,7 +9,7 @@ statDict = {
     'CHA': 'C13'
 }
 
-skillPackages = {
+skill_packages = {
     'Artist': ['Alertness', 'Craft (Choose One)', 'Disguise',
                'Persuade', 'Art (Choose One)', 'Art (Choose Another)',
                'Art (Choose one more)', 'HUMINT'],
@@ -102,7 +102,7 @@ skillPackages = {
                        'Navigate', 'Persuade', 'Search', 'Stealth']
 }
 
-bondsDict = {
+bonds_dict = {
     'Bond 1': 'F9',
     'Bond 2': 'F10',
     'Bond 3': 'F11',
@@ -111,7 +111,7 @@ bondsDict = {
     'Bond 6': 'F114'
 }
 
-bondsScoreDict = {
+bonds_score_dict = {
     'Score 1': 'H9',
     'Score 2': 'H10',
     'Score 3': 'H11',
@@ -120,7 +120,7 @@ bondsScoreDict = {
     'Score 6': 'H114'
 }
 
-skillDict = {
+skill_dict = {
     'Accounting': 'C23',
     'Alertness': 'C24',
     'Anthropology': 'C25',
@@ -171,7 +171,7 @@ skillDict = {
     'Other Skill 6': 'G40'
 }
 
-defaultSkills = {
+default_skills = {
     'Accounting': '10',
     'Alertness': '20',
     'Anthropology': '0',
@@ -222,7 +222,7 @@ defaultSkills = {
     'Other Skill 6': '0'
 }
 
-anthropologistHistorianSkills = {
+anthropologist_historian_skills = {
     'choices': [{
         'Archeology': '50',
         'Anthropology': '50'
@@ -248,7 +248,7 @@ anthropologistHistorianSkills = {
     }
 }
 
-computerScienceSkills = {
+computer_science_skills = {
     'choices': [
     ],
     'languages': {
@@ -272,7 +272,7 @@ computerScienceSkills = {
     }
 }
 
-federalAgentSkills = {
+federal_agent_skills = {
     'choices': [
     ],
     'languages': {
@@ -299,7 +299,7 @@ federalAgentSkills = {
     }
 }
 
-criminalSkills = {
+criminal_skills = {
     'choices': [
     ],
     'languages': {
@@ -329,7 +329,7 @@ criminalSkills = {
     }
 }
 
-physicianSkills = {
+physician_skills = {
     'choices': [
     ],
     'languages': {
@@ -351,7 +351,7 @@ physicianSkills = {
     }
 }
 
-scientistSkills = {
+scientist_skills = {
     'choices': [
     ],
     'languages': {
@@ -373,7 +373,7 @@ scientistSkills = {
     }
 }
 
-specialOperatorSkills = {
+special_operator_skills = {
     'choices': [
     ],
     'languages': {
@@ -396,7 +396,7 @@ specialOperatorSkills = {
     }
 }
 
-firefighterSkills = {
+firefighter_skills = {
     'choices': [
     ],
     'languages': {
@@ -418,7 +418,7 @@ firefighterSkills = {
     }
 }
 
-foreignServiceOfficerSkills = {
+foreign_service_officer_skills = {
     'choices': [
     ],
     'languages': {
@@ -439,7 +439,7 @@ foreignServiceOfficerSkills = {
     }
 }
 
-intelligenceAnalystSkills = {
+intelligence_analyst_skills = {
     'choices': [
     ],
     'languages': {
@@ -460,7 +460,7 @@ intelligenceAnalystSkills = {
     }
 }
 
-lawyerBusinessExecutiveSkills = {
+lawyer_business_executive_skills = {
     'choices': [
     ],
     'languages': {
@@ -480,7 +480,7 @@ lawyerBusinessExecutiveSkills = {
     }
 }
 
-intelligenceCaseOfficerSkills = {
+intelligence_case_officer_skills = {
     'choices': [
     ],
     'languages': {
@@ -504,7 +504,7 @@ intelligenceCaseOfficerSkills = {
     }
 }
 
-mediaSpecialistSkills = {
+media_specialist_skills = {
     'choices': [{
         'Art (Creative Writing)': '60',
         'Art (Journalism)': '60',
@@ -533,7 +533,7 @@ mediaSpecialistSkills = {
     }
 }
 
-nurseParamedicSkills = {
+nurse_paramedic_skills = {
     'choices': [
     ],
     'languages': {
@@ -557,7 +557,7 @@ nurseParamedicSkills = {
     }
 }
 
-pilotSailorSkills = {
+pilot_sailor_skills = {
     'choices': [
     ],
     'languages': {
@@ -580,7 +580,7 @@ pilotSailorSkills = {
     }
 }
 
-policeOfficerSkills = {
+police_officer_skills = {
     'choices': [
     ],
     'languages': {
@@ -608,7 +608,7 @@ policeOfficerSkills = {
     }
 }
 
-programManagerSkills = {
+program_manager_skills = {
     'choices': [
     ],
     'languages': {
@@ -630,7 +630,7 @@ programManagerSkills = {
     }
 }
 
-soldierMarineSkills = {
+soldier_marine_skills = {
     'choices': [
     ],
     'languages': {
@@ -661,135 +661,135 @@ soldierMarineSkills = {
     }
 }
 
-anthroHisto = {
-    'profSkill': anthropologistHistorianSkills,
+anthro_histo = {
+    'profSkill': anthropologist_historian_skills,
     'numOfChoices': 2,
     'bonds': 4,
     'recStat': 'INT'
 }
 
-compSciHack = {
-    'profSkill': computerScienceSkills,
+comp_sci_hack = {
+    'profSkill': computer_science_skills,
     'numOfChoices': 4,
     'bonds': 3,
     'recStat': 'INT'
 }
 
-fedAgent = {
-    'profSkill': federalAgentSkills,
+fed_agent = {
+    'profSkill': federal_agent_skills,
     'numOfChoices': 1,
     'bonds': 3,
     'recStat': 'CON, POW, CHA'
 }
 
 physician = {
-    'profSkill': physicianSkills,
+    'profSkill': physician_skills,
     'numOfChoices': 2,
     'bonds': 3,
     'recStat': 'INT, POW, CON'
 }
 
 scientist = {
-    'profSkill': scientistSkills,
+    'profSkill': scientist_skills,
     'numOfChoices': 3,
     'bonds': 4,
     'recStat': 'INT'
 }
 
-specOp = {
-    'profSkill': specialOperatorSkills,
+spec_op = {
+    'profSkill': special_operator_skills,
     'numOfChoices': 0,
     'bonds': 2,
     'recStat': 'STR, CON, POW'
 }
 
 criminal = {
-    'profSkill': criminalSkills,
+    'profSkill': criminal_skills,
     'numOfChoices': 2,
     'bonds': 4,
     'recStat': 'STR, DEX'
 }
 
 firefighter = {
-    'profSkill': firefighterSkills,
+    'profSkill': firefighter_skills,
     'numOfChoices': 0,
     'bonds': 3,
     'recStat': 'STR, DEX, CON'
 }
 
 fso = {
-    'profSkill': foreignServiceOfficerSkills,
+    'profSkill': foreign_service_officer_skills,
     'numOfChoices': 0,
     'bonds': 3,
     'recStat': 'INT, CHA'
 }
 
-intelAnal = {
-    'profSkill': intelligenceAnalystSkills,
+intel_anal = {
+    'profSkill': intelligence_analyst_skills,
     'numOfChoices': 0,
     'bonds': 3,
     'recStat': 'INT'
 }
 
-lawExec = {
-    'profSkill': lawyerBusinessExecutiveSkills,
+law_exec = {
+    'profSkill': lawyer_business_executive_skills,
     'numOfChoices': 4,
     'bonds': 4,
     'recStat': 'INT, CHA'
 }
 
 ico = {
-    'profSkill': intelligenceCaseOfficerSkills,
+    'profSkill': intelligence_case_officer_skills,
     'numOfChoices': 0,
     'bonds': 2,
     'recStat': 'INT, POW, CHA'
 }
 
-medSpec = {
-    'profSkill': mediaSpecialistSkills,
+med_spec = {
+    'profSkill': media_specialist_skills,
     'numOfChoices': 5,
     'bonds': 4,
     'recStat': 'INT, CHA'
 }
 
-nursePara = {
-    'profSkill': nurseParamedicSkills,
+nurse_para = {
+    'profSkill': nurse_paramedic_skills,
     'numOfChoices': 2,
     'bonds': 4,
     'recStat': 'INT, POW, CHA'
 }
 
-piloSail = {
-    'profSkill': pilotSailorSkills,
+pilo_sail = {
+    'profSkill': pilot_sailor_skills,
     'numOfChoices': 2,
     'bonds': 3,
     'recStat': 'DEX, INT'
 }
 
 police = {
-    'profSkill': policeOfficerSkills,
+    'profSkill': police_officer_skills,
     'numOfChoices': 1,
     'bonds': 3,
     'recStat': 'STR, CON, POW'
 }
 
-progMana = {
-    'profSkill': programManagerSkills,
+prog_mana = {
+    'profSkill': program_manager_skills,
     'numOfChoices': 1,
     'bonds': 4,
     'recStat': 'INT, CHA'
 }
 
 soldier = {
-    'profSkill': soldierMarineSkills,
+    'profSkill': soldier_marine_skills,
     'numOfChoices': 3,
     'bonds': 4,
     'recStat': 'STR, CON'
 }
 
-statArray = []
+stat_array = []
 
-statPoints = 72
+stat_points = 72
 
 inventory = ['Glock 19 (Medium Pistol)', 'First Aid Kit', 'Self-Applying Tourniquet',
              'Hemostatic Gel', 'Clothes', 'Boxes of Ammunition', 'S&W Model 36 (Light Pistol)',
@@ -797,7 +797,7 @@ inventory = ['Glock 19 (Medium Pistol)', 'First Aid Kit', 'Self-Applying Tourniq
              'Doorstops', 'Chalk', 'Bottled Water', 'Energy Bars', 'Batteries', 'Sunscreen',
              'Antibacterial Gel', 'Dufflebag or Backpack']
 
-listOfMotivations = ['Exploiting the unnatural', 'Recognition for achievements',
+list_of_motivations = ['Exploiting the unnatural', 'Recognition for achievements',
                      'Showing others how its done', 'Correcting past mistakes',
                      'Success despite obstacles', 'Proving my worth', 'Getting the job done',
                      'Living up to expectations', 'Doing a job no one else can do',
@@ -808,20 +808,20 @@ listOfMotivations = ['Exploiting the unnatural', 'Recognition for achievements',
                      'Solving hard problems', 'Survival at all costs',
                      'Professionalism', 'Doing whats right', 'Following the law',
                      'Healing', 'Faith', 'Patriotism', 'Personal integrity', 'Atonement',
-                     'Protect a bond', 'Protect my family', 'Protect my friends/colleagues',
-                     'Protect an organization', 'Protect a community', 'Protect my country',
-                     'Protect humanity', 'Protect innocents',
-                     'Figuring out what people want to hear', 'Telling lies from the turth',
-                     'Communication', 'Diplomacy', 'Family obligations',
-                     'Knowing what makes people tick', 'We can fix this',
-                     'Never letting a particular bond down', 'New romance',
-                     'Recruiting new agents and friendlies', 'Investigating...',
-                     'Revenge against...', 'Staying one step ahead of...', 'Stopping...',
-                     'A beloved pet', 'Favorite academic pursuit', 'Favorite art form',
-                     'Favorite hobby', 'Favorite bad habit', 'Finding true meaning',
-                     'Home', 'Sports', 'Intimacy', 'Anything for a sense of control']
+                       'Protect a bond', 'Protect my family', 'Protect my friends/colleagues',
+                       'Protect an organization', 'Protect a community', 'Protect my country',
+                       'Protect humanity', 'Protect innocents',
+                       'Figuring out what people want to hear', 'Telling lies from the turth',
+                       'Communication', 'Diplomacy', 'Family obligations',
+                       'Knowing what makes people tick', 'We can fix this',
+                       'Never letting a particular bond down', 'New romance',
+                       'Recruiting new agents and friendlies', 'Investigating...',
+                       'Revenge against...', 'Staying one step ahead of...', 'Stopping...',
+                       'A beloved pet', 'Favorite academic pursuit', 'Favorite art form',
+                       'Favorite hobby', 'Favorite bad habit', 'Finding true meaning',
+                       'Home', 'Sports', 'Intimacy', 'Anything for a sense of control']
 
-listOfBonds = ['Spouse', 'Ex-Spouse', 'Son', 'Daughter',
+list_of_bonds = ['Spouse', 'Ex-Spouse', 'Son', 'Daughter',
                'Parent', 'Grandparent', 'Best Friend',
                'Coworker', 'Partner', 'Psychologist',
                'Therapist', 'Spouse & Children', 'Parents',
@@ -829,13 +829,13 @@ listOfBonds = ['Spouse', 'Ex-Spouse', 'Son', 'Daughter',
                'Church', 'Support Group', 'Survivors of a shared trauma',
                'Brother', 'Sister']
 
-listOfEmployers = ['Federal Bureau of Investigation', 'Drug Enforcement Administration',
+list_of_employers = ['Federal Bureau of Investigation', 'Drug Enforcement Administration',
                    'Immigration & Customs Enforcement', 'U.S. Marshal',
                    'U.S. Army', 'U.S. Airforce', 'U.S. Navy', 'U.S. Marines',
                    'U.S. Special Operations Command', 'Central Intelligence Agency',
                    'Department of State', 'Centre for Disease Control', 'None']
 
-listOfProfessions = ['Anthropologist', 'Historian', 'Computer Scientist',
+list_of_professions = ['Anthropologist', 'Historian', 'Computer Scientist',
                      'Engineer', 'Federal Agent', 'Physician',
                      'Scientist', 'Special Operator', 'Criminal',
                      'Firefighter', 'Foreign Service Officer',
@@ -844,6 +844,6 @@ listOfProfessions = ['Anthropologist', 'Historian', 'Computer Scientist',
                      'Paramedic', 'Police Officer', 'Pilot', 'Sailor',
                      'Program Manager', 'Soldier', 'Marine']
 
-listOfDisorders = ['Amnesia', 'Depersonalization Disorder', 'Depression',
+list_of_disorders = ['Amnesia', 'Depersonalization Disorder', 'Depression',
                    'Dissociative Identity Disorder', 'Fugues', 'Megalomania',
                    'Paranoia', 'Sleep Disorder']
