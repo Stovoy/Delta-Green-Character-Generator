@@ -231,13 +231,13 @@ anthropologist_historian_skills = {
         'Foreign Language (choose one)': '50',
         'Foreign Language (choose another)': '40'
     },
-    'profSkills': {
+    'prof_skills': {
         'Bureaucracy': '40',
         'History': '60',
         'Occult': '40',
         'Persuade': '40'
     },
-    'chooseSkills': {
+    'choose_skills': {
         'Anthropology': '40',
         'Archeology': '40',
         'HUMINT': '50',
@@ -253,7 +253,7 @@ computer_science_skills = {
     ],
     'languages': {
     },
-    'profSkills': {
+    'prof_skills': {
         'Computer Science': '60',
         'Craft (Electrician)': '60',
         'Craft (Mechanic)': '40',
@@ -261,7 +261,7 @@ computer_science_skills = {
         'Science (Mathematics)': '40',
         'SIGINT': '40'
     },
-    'chooseSkills': {
+    'choose_skills': {
         'Accounting': '50',
         'Bureaucracy': '50',
         'Craft': '40',
@@ -277,7 +277,7 @@ federal_agent_skills = {
     ],
     'languages': {
     },
-    'profSkills': {
+    'prof_skills': {
         'Alertness': '50',
         'Bureaucracy': '40',
         'Criminology': '50',
@@ -290,7 +290,7 @@ federal_agent_skills = {
         'Search': '50',
         'Unarmed Combat': '60'
     },
-    'chooseSkills': {
+    'choose_skills': {
         'Accounting': '60',
         'Computer Science': '50',
         'Foreign Language': '50',
@@ -304,7 +304,7 @@ criminal_skills = {
     ],
     'languages': {
     },
-    'profSkills': {
+    'prof_skills': {
         'Alertness': '50',
         'Criminology': '60',
         'Dodge': '40',
@@ -316,7 +316,7 @@ criminal_skills = {
         'Stealth': '50',
         'Unarmed Combat': '50'
     },
-    'chooseSkills': {
+    'choose_skills': {
         'Craft (Locksmithing)': '40',
         'Demolitions': '40',
         'Disguise': '50',
@@ -334,7 +334,7 @@ physician_skills = {
     ],
     'languages': {
     },
-    'profSkills': {
+    'prof_skills': {
         'Bureaucracy': '50',
         'First Aid': '60',
         'Medicine': '60',
@@ -343,7 +343,7 @@ physician_skills = {
         'Science (Biology)': '60',
         'Search': '40'
     },
-    'chooseSkills': {
+    'choose_skills': {
         'Forensics': '50',
         'Psychotherapy': '60',
         'Science (Choose One)': '50',
@@ -356,14 +356,14 @@ scientist_skills = {
     ],
     'languages': {
     },
-    'profSkills': {
+    'prof_skills': {
         'Bureaucracy': '40',
         'Computer Science': '40',
         'Science (choose one)': '60',
         'Science (choose another)': '50',
         'Science (choose one more)': '50',
     },
-    'chooseSkills': {
+    'choose_skills': {
         'Accounting': '60',
         'Craft (choose one)': '40',
         'Foreign Language (choose one)': '40',
@@ -378,7 +378,7 @@ special_operator_skills = {
     ],
     'languages': {
     },
-    'profSkills': {
+    'prof_skills': {
         'Alertness': '60',
         'Athletics': '60',
         'Demolitions': '40',
@@ -392,7 +392,7 @@ special_operator_skills = {
         'Swim': '50',
         'Unarmed Combat': '60',
     },
-    'chooseSkills': {
+    'choose_skills': {
     }
 }
 
@@ -401,7 +401,7 @@ firefighter_skills = {
     ],
     'languages': {
     },
-    'profSkills': {
+    'prof_skills': {
         'Alertness': '50',
         'Athletics': '60',
         'Craft (Electrician)': '40',
@@ -414,7 +414,7 @@ firefighter_skills = {
         'Navigate': '50',
         'Search': '40',
     },
-    'chooseSkills': {
+    'choose_skills': {
     }
 }
 
@@ -426,7 +426,7 @@ foreign_service_officer_skills = {
         'Foreign Language (choose another)': '50',
         'Foreign Language (choose one more)': '40',
     },
-    'profSkills': {
+    'prof_skills': {
         'Accounting': '50',
         'Anthropology': '40',
         'Bureaucracy': '60',
@@ -435,7 +435,7 @@ foreign_service_officer_skills = {
         'Law': '40',
         'Persuade': '50',
     },
-    'chooseSkills': {
+    'choose_skills': {
     }
 }
 
@@ -447,7 +447,7 @@ intelligence_analyst_skills = {
         'Foreign Language (choose another)': '50',
         'Foreign Language (choose one more)': '40',
     },
-    'profSkills': {
+    'prof_skills': {
         'Anthropology': '40',
         'Bureaucracy': '50',
         'Computer Science': '40',
@@ -456,7 +456,7 @@ intelligence_analyst_skills = {
         'HUMINT': '50',
         'SIGINT': '40',
     },
-    'chooseSkills': {
+    'choose_skills': {
     }
 }
 
@@ -465,13 +465,13 @@ lawyer_business_executive_skills = {
     ],
     'languages': {
     },
-    'profSkills': {
+    'prof_skills': {
         'Accounting': '40',
         'Bureaucracy': '50',
         'HUMINT': '50',
         'Persuade': '40',
     },
-    'chooseSkills': {
+    'choose_skills': {
         'Computer Science': '50',
         'Criminology': '60',
         'Foreign Language (choose one)': '50',
@@ -487,7 +487,7 @@ intelligence_case_officer_skills = {
         'Foreign Language (choose one)': '50',
         'Foreign Language (choose another)': '40',
     },
-    'profSkills': {
+    'prof_skills': {
         'Alertness': '50',
         'Bureaucracy': '40',
         'Criminology': '50',
@@ -500,7 +500,7 @@ intelligence_case_officer_skills = {
         'Stealth': '50',
         'Unarmed Combat': '50',
     },
-    'chooseSkills': {
+    'choose_skills': {
     }
 }
 
@@ -513,12 +513,12 @@ media_specialist_skills = {
     }],
     'languages': {
     },
-    'profSkills': {
+    'prof_skills': {
         'History': '40',
         'HUMINT': '40',
         'Persuade': '50',
     },
-    'chooseSkills': {
+    'choose_skills': {
         'Anthropology': '40',
         'Archeology': '40',
         'Art (choose one)': '40',
@@ -538,7 +538,7 @@ nurse_paramedic_skills = {
     ],
     'languages': {
     },
-    'profSkills': {
+    'prof_skills': {
         'Alertness': '40',
         'Bureaucracy': '40',
         'First Aid': '60',
@@ -548,7 +548,7 @@ nurse_paramedic_skills = {
         'Pharmacy': '40',
         'Science (Biology)': '40',
     },
-    'chooseSkills': {
+    'choose_skills': {
         'Drive': '60',
         'Forensics': '40',
         'Navigate': '50',
@@ -562,7 +562,7 @@ pilot_sailor_skills = {
     ],
     'languages': {
     },
-    'profSkills': {
+    'prof_skills': {
         'Alertness': '60',
         'Bureaucracy': '30',
         'Craft (Electrician)': '40',
@@ -572,7 +572,7 @@ pilot_sailor_skills = {
         'Science (Meteorology)': '40',
         'Swim': '40',
     },
-    'chooseSkills': {
+    'choose_skills': {
         'Foreign Language (choose one)': '50',
         'Pilot (choose another one)': '50',
         'Heavy Weapons': '50',
@@ -585,7 +585,7 @@ police_officer_skills = {
     ],
     'languages': {
     },
-    'profSkills': {
+    'prof_skills': {
         'Alertness': '60',
         'Bureaucracy': '40',
         'Criminology': '40',
@@ -600,7 +600,7 @@ police_officer_skills = {
         'Search': '40',
         'Unarmed Combat': '60',
     },
-    'chooseSkills': {
+    'choose_skills': {
         'Forensics': '50',
         'Heavy Machinery': '60',
         'Heavy Weapons': '50',
@@ -614,7 +614,7 @@ program_manager_skills = {
     'languages': {
         'Foreign Language (choose one)': '50'
     },
-    'profSkills': {
+    'prof_skills': {
         'Accounting': '60',
         'Bureaucracy': '60',
         'Computer Science': '50',
@@ -622,7 +622,7 @@ program_manager_skills = {
         'Law': '40',
         'Persuade': '50'
     },
-    'chooseSkills': {
+    'choose_skills': {
         'Anthropology': '30',
         'Art (choose one)': '30',
         'Craft (choose one)': '30',
@@ -635,7 +635,7 @@ soldier_marine_skills = {
     ],
     'languages': {
     },
-    'profSkills': {
+    'prof_skills': {
         'Alertness': '50',
         'Athletics': '50',
         'Bureaucracy': '30',
@@ -647,7 +647,7 @@ soldier_marine_skills = {
         'Persuade': '30',
         'Unarmed Combat': '50',
     },
-    'chooseSkills': {
+    'choose_skills': {
         'Artillery': '40',
         'Computer Science': '40',
         'Craft (choose one)': '40',
@@ -662,129 +662,129 @@ soldier_marine_skills = {
 }
 
 anthro_histo = {
-    'profSkill': anthropologist_historian_skills,
-    'numOfChoices': 2,
+    'prof_skill': anthropologist_historian_skills,
+    'num_of_choices': 2,
     'bonds': 4,
-    'recStat': 'INT'
+    'rec_stat': 'INT'
 }
 
 comp_sci_hack = {
-    'profSkill': computer_science_skills,
-    'numOfChoices': 4,
+    'prof_skill': computer_science_skills,
+    'num_of_choices': 4,
     'bonds': 3,
-    'recStat': 'INT'
+    'rec_stat': 'INT'
 }
 
 fed_agent = {
-    'profSkill': federal_agent_skills,
-    'numOfChoices': 1,
+    'prof_skill': federal_agent_skills,
+    'num_of_choices': 1,
     'bonds': 3,
-    'recStat': 'CON, POW, CHA'
+    'rec_stat': 'CON, POW, CHA'
 }
 
 physician = {
-    'profSkill': physician_skills,
-    'numOfChoices': 2,
+    'prof_skill': physician_skills,
+    'num_of_choices': 2,
     'bonds': 3,
-    'recStat': 'INT, POW, CON'
+    'rec_stat': 'INT, POW, CON'
 }
 
 scientist = {
-    'profSkill': scientist_skills,
-    'numOfChoices': 3,
+    'prof_skill': scientist_skills,
+    'num_of_choices': 3,
     'bonds': 4,
-    'recStat': 'INT'
+    'rec_stat': 'INT'
 }
 
 spec_op = {
-    'profSkill': special_operator_skills,
-    'numOfChoices': 0,
+    'prof_skill': special_operator_skills,
+    'num_of_choices': 0,
     'bonds': 2,
-    'recStat': 'STR, CON, POW'
+    'rec_stat': 'STR, CON, POW'
 }
 
 criminal = {
-    'profSkill': criminal_skills,
-    'numOfChoices': 2,
+    'prof_skill': criminal_skills,
+    'num_of_choices': 2,
     'bonds': 4,
-    'recStat': 'STR, DEX'
+    'rec_stat': 'STR, DEX'
 }
 
 firefighter = {
-    'profSkill': firefighter_skills,
-    'numOfChoices': 0,
+    'prof_skill': firefighter_skills,
+    'num_of_choices': 0,
     'bonds': 3,
-    'recStat': 'STR, DEX, CON'
+    'rec_stat': 'STR, DEX, CON'
 }
 
 fso = {
-    'profSkill': foreign_service_officer_skills,
-    'numOfChoices': 0,
+    'prof_skill': foreign_service_officer_skills,
+    'num_of_choices': 0,
     'bonds': 3,
-    'recStat': 'INT, CHA'
+    'rec_stat': 'INT, CHA'
 }
 
 intel_anal = {
-    'profSkill': intelligence_analyst_skills,
-    'numOfChoices': 0,
+    'prof_skill': intelligence_analyst_skills,
+    'num_of_choices': 0,
     'bonds': 3,
-    'recStat': 'INT'
+    'rec_stat': 'INT'
 }
 
 law_exec = {
-    'profSkill': lawyer_business_executive_skills,
-    'numOfChoices': 4,
+    'prof_skill': lawyer_business_executive_skills,
+    'num_of_choices': 4,
     'bonds': 4,
-    'recStat': 'INT, CHA'
+    'rec_stat': 'INT, CHA'
 }
 
 ico = {
-    'profSkill': intelligence_case_officer_skills,
-    'numOfChoices': 0,
+    'prof_skill': intelligence_case_officer_skills,
+    'num_of_choices': 0,
     'bonds': 2,
-    'recStat': 'INT, POW, CHA'
+    'rec_stat': 'INT, POW, CHA'
 }
 
 med_spec = {
-    'profSkill': media_specialist_skills,
-    'numOfChoices': 5,
+    'prof_skill': media_specialist_skills,
+    'num_of_choices': 5,
     'bonds': 4,
-    'recStat': 'INT, CHA'
+    'rec_stat': 'INT, CHA'
 }
 
 nurse_para = {
-    'profSkill': nurse_paramedic_skills,
-    'numOfChoices': 2,
+    'prof_skill': nurse_paramedic_skills,
+    'num_of_choices': 2,
     'bonds': 4,
-    'recStat': 'INT, POW, CHA'
+    'rec_stat': 'INT, POW, CHA'
 }
 
 pilo_sail = {
-    'profSkill': pilot_sailor_skills,
-    'numOfChoices': 2,
+    'prof_skill': pilot_sailor_skills,
+    'num_of_choices': 2,
     'bonds': 3,
-    'recStat': 'DEX, INT'
+    'rec_stat': 'DEX, INT'
 }
 
 police = {
-    'profSkill': police_officer_skills,
-    'numOfChoices': 1,
+    'prof_skill': police_officer_skills,
+    'num_of_choices': 1,
     'bonds': 3,
-    'recStat': 'STR, CON, POW'
+    'rec_stat': 'STR, CON, POW'
 }
 
 prog_mana = {
-    'profSkill': program_manager_skills,
-    'numOfChoices': 1,
+    'prof_skill': program_manager_skills,
+    'num_of_choices': 1,
     'bonds': 4,
-    'recStat': 'INT, CHA'
+    'rec_stat': 'INT, CHA'
 }
 
 soldier = {
-    'profSkill': soldier_marine_skills,
-    'numOfChoices': 3,
+    'prof_skill': soldier_marine_skills,
+    'num_of_choices': 3,
     'bonds': 4,
-    'recStat': 'STR, CON'
+    'rec_stat': 'STR, CON'
 }
 
 stat_array = []
@@ -798,16 +798,16 @@ inventory = ['Glock 19 (Medium Pistol)', 'First Aid Kit', 'Self-Applying Tourniq
              'Antibacterial Gel', 'Dufflebag or Backpack']
 
 list_of_motivations = ['Exploiting the unnatural', 'Recognition for achievements',
-                     'Showing others how its done', 'Correcting past mistakes',
-                     'Success despite obstacles', 'Proving my worth', 'Getting the job done',
-                     'Living up to expectations', 'Doing a job no one else can do',
-                     'Constant improvement', 'Conspiracy theorizing',
-                     'Making sense of a past tragedy', 'The thrill of discovery',
-                     'Exploration', 'Solving a particular mystery', 'Understanding the unnatural',
-                     'Learning a groups secrets', 'Expanding human knowledge',
-                     'Solving hard problems', 'Survival at all costs',
-                     'Professionalism', 'Doing whats right', 'Following the law',
-                     'Healing', 'Faith', 'Patriotism', 'Personal integrity', 'Atonement',
+                       'Showing others how its done', 'Correcting past mistakes',
+                       'Success despite obstacles', 'Proving my worth', 'Getting the job done',
+                       'Living up to expectations', 'Doing a job no one else can do',
+                       'Constant improvement', 'Conspiracy theorizing',
+                       'Making sense of a past tragedy', 'The thrill of discovery',
+                       'Exploration', 'Solving a particular mystery', 'Understanding the unnatural',
+                       'Learning a groups secrets', 'Expanding human knowledge',
+                       'Solving hard problems', 'Survival at all costs',
+                       'Professionalism', 'Doing whats right', 'Following the law',
+                       'Healing', 'Faith', 'Patriotism', 'Personal integrity', 'Atonement',
                        'Protect a bond', 'Protect my family', 'Protect my friends/colleagues',
                        'Protect an organization', 'Protect a community', 'Protect my country',
                        'Protect humanity', 'Protect innocents',
@@ -822,28 +822,28 @@ list_of_motivations = ['Exploiting the unnatural', 'Recognition for achievements
                        'Home', 'Sports', 'Intimacy', 'Anything for a sense of control']
 
 list_of_bonds = ['Spouse', 'Ex-Spouse', 'Son', 'Daughter',
-               'Parent', 'Grandparent', 'Best Friend',
-               'Coworker', 'Partner', 'Psychologist',
-               'Therapist', 'Spouse & Children', 'Parents',
-               'Siblings', 'Colleagues in an intense job',
-               'Church', 'Support Group', 'Survivors of a shared trauma',
-               'Brother', 'Sister']
+                 'Parent', 'Grandparent', 'Best Friend',
+                 'Coworker', 'Partner', 'Psychologist',
+                 'Therapist', 'Spouse & Children', 'Parents',
+                 'Siblings', 'Colleagues in an intense job',
+                 'Church', 'Support Group', 'Survivors of a shared trauma',
+                 'Brother', 'Sister']
 
 list_of_employers = ['Federal Bureau of Investigation', 'Drug Enforcement Administration',
-                   'Immigration & Customs Enforcement', 'U.S. Marshal',
-                   'U.S. Army', 'U.S. Airforce', 'U.S. Navy', 'U.S. Marines',
-                   'U.S. Special Operations Command', 'Central Intelligence Agency',
-                   'Department of State', 'Centre for Disease Control', 'None']
+                     'Immigration & Customs Enforcement', 'U.S. Marshal',
+                     'U.S. Army', 'U.S. Airforce', 'U.S. Navy', 'U.S. Marines',
+                     'U.S. Special Operations Command', 'Central Intelligence Agency',
+                     'Department of State', 'Centre for Disease Control', 'None']
 
 list_of_professions = ['Anthropologist', 'Historian', 'Computer Scientist',
-                     'Engineer', 'Federal Agent', 'Physician',
-                     'Scientist', 'Special Operator', 'Criminal',
-                     'Firefighter', 'Foreign Service Officer',
-                     'Intelligence Analyst', 'Lawyer', 'Business Executive',
-                     'Intelligence Case Officer', 'Media Specialist', 'Nurse',
-                     'Paramedic', 'Police Officer', 'Pilot', 'Sailor',
-                     'Program Manager', 'Soldier', 'Marine']
+                       'Engineer', 'Federal Agent', 'Physician',
+                       'Scientist', 'Special Operator', 'Criminal',
+                       'Firefighter', 'Foreign Service Officer',
+                       'Intelligence Analyst', 'Lawyer', 'Business Executive',
+                       'Intelligence Case Officer', 'Media Specialist', 'Nurse',
+                       'Paramedic', 'Police Officer', 'Pilot', 'Sailor',
+                       'Program Manager', 'Soldier', 'Marine']
 
 list_of_disorders = ['Amnesia', 'Depersonalization Disorder', 'Depression',
-                   'Dissociative Identity Disorder', 'Fugues', 'Megalomania',
-                   'Paranoia', 'Sleep Disorder']
+                     'Dissociative Identity Disorder', 'Fugues', 'Megalomania',
+                     'Paranoia', 'Sleep Disorder']

@@ -1,9 +1,8 @@
 import random
-import ezsheets
+import openpyxl
 from data import *
-
-ss = ezsheets.Spreadsheet('')
-sheet = ss[0]
+workbook = openpyxl.Workbook()
+sheet = workbook.active
 
 
 def merge_dicts_replace(dict1, dict2):
@@ -63,7 +62,7 @@ def spend_bonus_points(list_of_skills):
                 print("Please choose a different skill. Can't exceed 80% right now.")
                 continue
 
-        stat_value = int(sheet.get(skill_dict[chosen_skill]).replace('%', ''))
+        stat_value = int(sheet[skill_dict[chosen_skill]].value.replace('%', ''))
         stat_value = stat_value + spent_points
 
         if stat_value <= 80:
@@ -154,7 +153,7 @@ def set_skill_value(skill_dict, amount):
             choice = choice - 1
             chosen_skill = skills[choice]
             chosen_stat = skill_dict[chosen_skill]
-            stat = int(sheet.get(chosen_stat).replace('%', ''))
+            stat = int(sheet[chosen_stat].value.replace('%', ''))
             stat = stat + amount
             sheet[chosen_stat] = str(stat) + "%"
             iterator -= 1
@@ -294,13 +293,13 @@ def confirm():
 def print_profession_info(prof_skill, num_of_choices, bonds, rec_stat):
     iterator = 1
     print("\nYour professional skills:")
-    for key in prof_skill["profSkills"]:
-        print(str(iterator) + ". " + key + ": " + prof_skill["profSkills"][key] + "%")
+    for key in prof_skill["prof_skills"]:
+        print(str(iterator) + ". " + key + ": " + prof_skill["prof_skills"][key] + "%")
         iterator += 1
     print("\nYou'll be able to choose " + str(num_of_choices) + " skills from:")
     iterator = 1
-    for key in prof_skill["chooseSkills"]:
-        print(str(iterator) + ". " + key + ": " + prof_skill["chooseSkills"][key] + "%")
+    for key in prof_skill["choose_skills"]:
+        print(str(iterator) + ". " + key + ": " + prof_skill["choose_skills"][key] + "%")
         iterator += 1
     print("\nYou'll have " + str(bonds) + " bonds")
     print("\nThis profession's recommended stats are: " + rec_stat)
@@ -554,7 +553,7 @@ def set_profession_stats(prof_choice):
     print("You have chosen: " + prof_choice)
 
 
-def set_profession_skills(prof_skill, num_of_choices):
+def set_profession_skills(prof_skill, num_of_choices, **kwargs):
     dict_of_skill_assigns = {}
     skills_list = []
     iterator = 1
@@ -594,12 +593,12 @@ def set_profession_skills(prof_skill, num_of_choices):
         print("You've chosen " + choice + " " + language[1])
         dict_of_skill_assigns.update({"Foreign Language (" + choice + ")": language[1]})
 
-    for skill in prof_skill['profSkills'].items():
+    for skill in prof_skill['prof_skills'].items():
         dict_of_skill_assigns.update({skill[0]: skill[1]})
 
     if num_of_choices > 0:
         print("Please choose " + str(num_of_choices) + " skills from this list that you don't already have: ")
-        for skill in prof_skill['chooseSkills'].items():
+        for skill in prof_skill['choose_skills'].items():
             skills_list.append(skill[0])
             print(str(iterator) + ". " + skill[0] + ": " + skill[1])
             iterator += 1
@@ -619,7 +618,7 @@ def set_profession_skills(prof_skill, num_of_choices):
             continue
 
         if choice < len(skills_list):
-            dict_of_skill_assigns.update({user_choice: prof_skill['chooseSkills'][user_choice]})
+            dict_of_skill_assigns.update({user_choice: prof_skill['choose_skills'][user_choice]})
             num_of_choices -= 1
             if num_of_choices == 0:
                 break
@@ -778,14 +777,14 @@ def get_chosen_stat(points):
 
 
 def handle_derived_stats():
-    get_str_con = int(sheet['C8']) + int(sheet['C9'])
+    get_str_con = int(sheet['C8'].value) + int(sheet['C9'].value)
     divided_str_con = float(get_str_con / 2)
-    multiplied_pow = int(sheet['C12'] * 5)
-    get_san_pow = int(multiplied_pow - int(sheet['C12']))
+    multiplied_pow = int(sheet['C12'].value * 5)
+    get_san_pow = int(multiplied_pow - int(sheet['C12'].value))
     print("This is handled by the sheet but we will double check.")
     print("HP is equal to STR + CON (" + str(get_str_con) + ") divided by 2 (" + str(
         divided_str_con) + ") rounded up (" + str(round(divided_str_con)) + ") ")
-    print("WP is equal to POW (" + str(sheet['C12']) + ") ")
+    print("WP is equal to POW (" + str(sheet['C12'].value) + ") ")
     print("SAN is equal to POW x 5 (" + str(multiplied_pow) + ") ")
     print("BP is equal to SAN - POW (" + str(get_san_pow) + ") ")
 
@@ -810,6 +809,7 @@ def handle_statistics():
             elif choice == 4:
                 reset_skills()
                 quit()
+            break
 
         if choice not in options:
             print("Please input a number on the list")
@@ -861,7 +861,7 @@ def set_random_motivations():
 
 def set_bonds_chosen(bonds):
     key_iterator = 1
-    score = sheet.get('C13')
+    score = sheet['C13']
     while bonds > 0:
         print("\nYou have " + str(bonds) + " bonds remaining.")
         print("\nPlease enter a bond name or bond type:")
@@ -876,7 +876,7 @@ def set_bonds_chosen(bonds):
 
 def set_bonds_random(bonds):
     key_iterator = 1
-    score = sheet.get('C13')
+    score = sheet['C13'].value
     while bonds > 0:
         bond_key = ("Bond " + str(key_iterator))
         score_key = ("Score " + str(key_iterator))
@@ -990,12 +990,12 @@ def set_dob():
 
 
 def set_bio(background, profession, veteran_status):
-    stat_str = int(sheet.get('C8'))
-    stat_con = int(sheet.get('C9'))
-    stat_dex = int(sheet.get('C10'))
-    stat_int = int(sheet.get('C11'))
-    stat_pow = int(sheet.get('C12'))
-    stat_cha = int(sheet.get('C13'))
+    stat_str = int(sheet['C8'].value)
+    stat_con = int(sheet['C9'].value)
+    stat_dex = int(sheet['C10'].value)
+    stat_int = int(sheet['C11'].value)
+    stat_pow = int(sheet['C12'].value)
+    stat_cha = int(sheet['C13'].value)
 
     bio = "At a glance, people notice your "
 
@@ -1147,10 +1147,10 @@ Add +10% to your Agent’s Occult skill. Reduce SAN
 by 5. Subtract 3 from your Agent’s CHA and each
 Bond. Your Agent is Adapted to Violence.''')
         if confirm():
-            occult = int(sheet['E35'].replace('%', ''))
+            occult = int(sheet['E35'].value.replace('%', ''))
             sheet['E35'] = str(occult + 10) + "%"
-            sheet['D18'] = int(sheet.get('C18')) - 5
-            sheet['C13'] = int(sheet.get('C13')) - 3
+            sheet['D18'] = int(sheet['C18'].value) - 5
+            sheet['C13'] = int(sheet['C13'].value) - 3
             return choice
         else:
             handle_veteran_type(get_veteran_type())
@@ -1160,9 +1160,9 @@ Bond. Your Agent is Adapted to Violence.''')
 by 5. Subtract 3 from your Agent’s POW. Your Agent
 is Adapted to Helplessness.''')
         if confirm():
-            occult = int(sheet['E35'].replace('%', ''))
+            occult = int(sheet['E35'].value.replace('%', ''))
             sheet['E35'] = str(occult + 10) + "%"
-            sheet['C12'] = int(sheet.get('C12')) - 3
+            sheet['C12'] = int(sheet['C12'].value) - 3
             return choice
         else:
             handle_veteran_type(get_veteran_type())
@@ -1173,9 +1173,9 @@ four skills other than Unnatural. This can bring skills
 higher than 80%. Reduce your Agent’s SAN by 5.
 Remove one Bond.''')
         if confirm():
-            occult = int(sheet['E35'].replace('%', ''))
+            occult = int(sheet['E35'].value.replace('%', ''))
             sheet['E35'] = str(occult + 10) + "%"
-            sheet['D18'] = int(sheet.get('C18')) - 5
+            sheet['D18'] = int(sheet['C18'].value) - 5
             print_skills(default_skills.keys())
             set_skill_value(skill_dict, choice, 10)
             return choice
@@ -1190,10 +1190,10 @@ the Unnatural (see page 72). Reset your Agent’s Breaking
 Point to his or her new SAN minus POW..''')
         if confirm():
             sheet['G33'] = "10%"
-            occult = int(sheet['E35'].replace('%', ''))
+            occult = int(sheet['E35'].value.replace('%', ''))
             sheet['E35'] = str(occult + 20) + "%"
-            sheet['D18'] = int(sheet.get('C18')) - int(sheet.get('C12'))
-            sheet['D19'] = int(sheet.get('D18')) - int(sheet.get('C12'))
+            sheet['D18'] = int(sheet['C18'].value) - int(sheet['C12'].value)
+            sheet['D19'] = int(sheet['D18'].value) - int(sheet['C12'].value)
             set_random_disorder()
             return choice
         else:
@@ -1227,18 +1227,20 @@ if __name__ == "__main__":
     handle_derived_stats()
 
     print("\nStep 3: Select Profession & Skills")
-    professionSelection = get_profession_selection(list_of_professions)
-    profSkillsDict = confirm_selection(professionSelection)
-    masterSkills = merge_dicts_replace(profSkillsDict, default_skills)
-    set_skills(skill_dict, masterSkills)
-    backgroundSelection = set_bonus_skills(skill_packages)
-    bonusSkillsDict = spend_bonus_points(get_package_skills(skill_packages, backgroundSelection))
-    set_skills(skill_dict, bonusSkillsDict)
+    profession_selection = get_profession_selection(list_of_professions)
+    prof_skills_dict = confirm_selection(profession_selection)
+    master_skills = merge_dicts_replace(prof_skills_dict, default_skills)
+    set_skills(skill_dict, master_skills)
+    background_selection = set_bonus_skills(skill_packages)
+    bonus_skills_dict = spend_bonus_points(get_package_skills(skill_packages, background_selection))
+    set_skills(skill_dict, bonus_skills_dict)
 
     print("\nStep 4: Define Bonds")
-    handle_bonds(professionSelection)
+    handle_bonds(profession_selection)
 
     print("\nStep 5: Finalizing Your Character")
-    veteranStatus = get_veteran_status()
-    handle_finalizing(backgroundSelection, professionSelection, veteranStatus)
+    veteran_status = get_veteran_status()
+    handle_finalizing(background_selection, profession_selection, veteran_status)
     handle_loadout()
+    workbook.save("output.xlsx")
+    print("Saved as output.xlsx")
