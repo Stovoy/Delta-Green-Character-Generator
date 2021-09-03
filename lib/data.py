@@ -1,13 +1,4 @@
-stat_list = ['STR', 'CON', 'DEX', 'INT', 'POW', 'CHA']
-
-stat_dict = {
-    'STR': 'C8',
-    'CON': 'C9',
-    'DEX': 'C10',
-    'INT': 'C11',
-    'POW': 'C12',
-    'CHA': 'C13'
-}
+stats = ['STR', 'CON', 'DEX', 'INT', 'POW', 'CHA']
 
 skill_packages = {
     'Artist': ['Alertness', 'Craft (Choose One)', 'Disguise',
@@ -102,75 +93,6 @@ skill_packages = {
                        'Navigate', 'Persuade', 'Search', 'Stealth']
 }
 
-bonds_dict = {
-    'Bond 1': 'F9',
-    'Bond 2': 'F10',
-    'Bond 3': 'F11',
-    'Bond 4': 'F12',
-    'Bond 5': 'F13',
-    'Bond 6': 'F114'
-}
-
-bonds_score_dict = {
-    'Score 1': 'H9',
-    'Score 2': 'H10',
-    'Score 3': 'H11',
-    'Score 4': 'H12',
-    'Score 5': 'H13',
-    'Score 6': 'H114'
-}
-
-skill_dict = {
-    'Accounting': 'C23',
-    'Alertness': 'C24',
-    'Anthropology': 'C25',
-    'Archeology': 'C26',
-    'Art': 'C27',
-    'Artillery': 'C29',
-    'Athletics': 'C30',
-    'Bureaucracy': 'C31',
-    'Computer Science': 'C32',
-    'Craft': 'C33',
-    'Criminology': 'C35',
-    'Demolitions': 'C36',
-    'Disguise': 'C37',
-    'Dodge': 'C38',
-    'Drive': 'C39',
-    'Firearms': 'C40',
-    'First Aid': 'E23',
-    'Forensics': 'E24',
-    'Heavy Machinery': 'E25',
-    'Heavy Weapons': 'E26',
-    'History': 'E27',
-    'HUMINT': 'E28',
-    'Law': 'E29',
-    'Medicine': 'E30',
-    'Melee Weapons': 'E31',
-    'Military Science': 'E32',
-    'Navigate': 'E34',
-    'Occult': 'E35',
-    'Persuade': 'E36',
-    'Pharmacy': 'E37',
-    'Pilot': 'E38',
-    'Psychotherapy': 'E40',
-    'Ride': 'G23',
-    'Science': 'G24',
-    'Search': 'G26',
-    'SIGINT': 'G27',
-    'Stealth': 'G28',
-    'Surgery': 'G29',
-    'Survival': 'G30',
-    'Swim': 'G31',
-    'Unarmed Combat': 'G32',
-    'Unnatural': 'G33',
-    'Other Skill 1': 'G35',
-    'Other Skill 2': 'G36',
-    'Other Skill 3': 'G37',
-    'Other Skill 4': 'G38',
-    'Other Skill 5': 'G39',
-    'Other Skill 6': 'G40'
-}
-
 default_skills = {
     'Accounting': '10',
     'Alertness': '20',
@@ -222,7 +144,7 @@ default_skills = {
     'Other Skill 6': '0'
 }
 
-anthropologist_historian_skills = {
+historian_skills = {
     'choices': [{
         'Archeology': '50',
         'Anthropology': '50'
@@ -231,7 +153,7 @@ anthropologist_historian_skills = {
         'Foreign Language (choose one)': '50',
         'Foreign Language (choose another)': '40'
     },
-    'prof_skills': {
+    'skills': {
         'Bureaucracy': '40',
         'History': '60',
         'Occult': '40',
@@ -248,12 +170,12 @@ anthropologist_historian_skills = {
     }
 }
 
-computer_science_skills = {
+engineer_skills = {
     'choices': [
     ],
     'languages': {
     },
-    'prof_skills': {
+    'skills': {
         'Computer Science': '60',
         'Craft (Electrician)': '60',
         'Craft (Mechanic)': '40',
@@ -277,7 +199,7 @@ federal_agent_skills = {
     ],
     'languages': {
     },
-    'prof_skills': {
+    'skills': {
         'Alertness': '50',
         'Bureaucracy': '40',
         'Criminology': '50',
@@ -304,7 +226,7 @@ criminal_skills = {
     ],
     'languages': {
     },
-    'prof_skills': {
+    'skills': {
         'Alertness': '50',
         'Criminology': '60',
         'Dodge': '40',
@@ -334,7 +256,7 @@ physician_skills = {
     ],
     'languages': {
     },
-    'prof_skills': {
+    'skills': {
         'Bureaucracy': '50',
         'First Aid': '60',
         'Medicine': '60',
@@ -356,7 +278,7 @@ scientist_skills = {
     ],
     'languages': {
     },
-    'prof_skills': {
+    'skills': {
         'Bureaucracy': '40',
         'Computer Science': '40',
         'Science (choose one)': '60',
@@ -378,7 +300,7 @@ special_operator_skills = {
     ],
     'languages': {
     },
-    'prof_skills': {
+    'skills': {
         'Alertness': '60',
         'Athletics': '60',
         'Demolitions': '40',
@@ -401,7 +323,7 @@ firefighter_skills = {
     ],
     'languages': {
     },
-    'prof_skills': {
+    'skills': {
         'Alertness': '50',
         'Athletics': '60',
         'Craft (Electrician)': '40',
@@ -426,7 +348,7 @@ foreign_service_officer_skills = {
         'Foreign Language (choose another)': '50',
         'Foreign Language (choose one more)': '40',
     },
-    'prof_skills': {
+    'skills': {
         'Accounting': '50',
         'Anthropology': '40',
         'Bureaucracy': '60',
@@ -447,7 +369,7 @@ intelligence_analyst_skills = {
         'Foreign Language (choose another)': '50',
         'Foreign Language (choose one more)': '40',
     },
-    'prof_skills': {
+    'skills': {
         'Anthropology': '40',
         'Bureaucracy': '50',
         'Computer Science': '40',
@@ -460,12 +382,12 @@ intelligence_analyst_skills = {
     }
 }
 
-lawyer_business_executive_skills = {
+business_executive_skills = {
     'choices': [
     ],
     'languages': {
     },
-    'prof_skills': {
+    'skills': {
         'Accounting': '40',
         'Bureaucracy': '50',
         'HUMINT': '50',
@@ -487,7 +409,7 @@ intelligence_case_officer_skills = {
         'Foreign Language (choose one)': '50',
         'Foreign Language (choose another)': '40',
     },
-    'prof_skills': {
+    'skills': {
         'Alertness': '50',
         'Bureaucracy': '40',
         'Criminology': '50',
@@ -513,7 +435,7 @@ media_specialist_skills = {
     }],
     'languages': {
     },
-    'prof_skills': {
+    'skills': {
         'History': '40',
         'HUMINT': '40',
         'Persuade': '50',
@@ -533,12 +455,12 @@ media_specialist_skills = {
     }
 }
 
-nurse_paramedic_skills = {
+paramedic_skills = {
     'choices': [
     ],
     'languages': {
     },
-    'prof_skills': {
+    'skills': {
         'Alertness': '40',
         'Bureaucracy': '40',
         'First Aid': '60',
@@ -557,12 +479,12 @@ nurse_paramedic_skills = {
     }
 }
 
-pilot_sailor_skills = {
+pilot_skills = {
     'choices': [
     ],
     'languages': {
     },
-    'prof_skills': {
+    'skills': {
         'Alertness': '60',
         'Bureaucracy': '30',
         'Craft (Electrician)': '40',
@@ -585,7 +507,7 @@ police_officer_skills = {
     ],
     'languages': {
     },
-    'prof_skills': {
+    'skills': {
         'Alertness': '60',
         'Bureaucracy': '40',
         'Criminology': '40',
@@ -614,7 +536,7 @@ program_manager_skills = {
     'languages': {
         'Foreign Language (choose one)': '50'
     },
-    'prof_skills': {
+    'skills': {
         'Accounting': '60',
         'Bureaucracy': '60',
         'Computer Science': '50',
@@ -630,12 +552,12 @@ program_manager_skills = {
     }
 }
 
-soldier_marine_skills = {
+soldier_skills = {
     'choices': [
     ],
     'languages': {
     },
-    'prof_skills': {
+    'skills': {
         'Alertness': '50',
         'Athletics': '50',
         'Bureaucracy': '30',
@@ -661,185 +583,385 @@ soldier_marine_skills = {
     }
 }
 
-anthro_histo = {
-    'prof_skill': anthropologist_historian_skills,
-    'num_of_choices': 2,
-    'bonds': 4,
-    'rec_stat': 'INT'
+items = [
+    'Glock 19 (Medium Pistol)', 'First Aid Kit', 'Self-Applying Tourniquet',
+    'Hemostatic Gel', 'Clothes', 'Boxes of Ammunition', 'S&W Model 36 (Light Pistol)',
+    'Extra Pistol Magazines', 'Flashlight', 'Folding Knife (Knife)', 'Basic Tools',
+    'Doorstops', 'Chalk', 'Bottled Water', 'Energy Bars', 'Batteries', 'Sunscreen',
+    'Antibacterial Gel', 'Dufflebag or Backpack'
+]
+
+motivations = [
+    'Exploiting the unnatural', 'Recognition for achievements',
+    'Showing others how its done', 'Correcting past mistakes',
+    'Success despite obstacles', 'Proving my worth', 'Getting the job done',
+    'Living up to expectations', 'Doing a job no one else can do',
+    'Constant improvement', 'Conspiracy theorizing',
+    'Making sense of a past tragedy', 'The thrill of discovery',
+    'Exploration', 'Solving a particular mystery', 'Understanding the unnatural',
+    'Learning a groups secrets', 'Expanding human knowledge',
+    'Solving hard problems', 'Survival at all costs',
+    'Professionalism', 'Doing whats right', 'Following the law',
+    'Healing', 'Faith', 'Patriotism', 'Personal integrity', 'Atonement',
+    'Protect a bond', 'Protect my family', 'Protect my friends/colleagues',
+    'Protect an organization', 'Protect a community', 'Protect my country',
+    'Protect humanity', 'Protect innocents',
+    'Figuring out what people want to hear', 'Telling lies from the turth',
+    'Communication', 'Diplomacy', 'Family obligations',
+    'Knowing what makes people tick', 'We can fix this',
+    'Never letting a particular bond down', 'New romance',
+    'Recruiting new agents and friendlies', 'Investigating...',
+    'Revenge against...', 'Staying one step ahead of...', 'Stopping...',
+    'A beloved pet', 'Favorite academic pursuit', 'Favorite art form',
+    'Favorite hobby', 'Favorite bad habit', 'Finding true meaning',
+    'Home', 'Sports', 'Intimacy', 'Anything for a sense of control'
+]
+
+bonds = [
+    'Spouse', 'Ex-Spouse', 'Son', 'Daughter',
+    'Parent', 'Grandparent', 'Best Friend',
+    'Coworker', 'Partner', 'Psychologist',
+    'Therapist', 'Spouse & Children', 'Parents',
+    'Siblings', 'Colleagues in an intense job',
+    'Church', 'Support Group', 'Survivors of a shared trauma',
+    'Brother', 'Sister'
+]
+
+employers = [
+    'Federal Bureau of Investigation', 'Drug Enforcement Administration',
+    'Immigration & Customs Enforcement', 'U.S. Marshal',
+    'U.S. Army', 'U.S. Airforce', 'U.S. Navy', 'U.S. Marines',
+    'U.S. Special Operations Command', 'Central Intelligence Agency',
+    'Department of State', 'Centre for Disease Control', 'None'
+]
+
+disorders = [
+    'Amnesia', 'Depersonalization Disorder', 'Depression',
+    'Dissociative Identity Disorder', 'Fugues', 'Megalomania',
+    'Paranoia', 'Sleep Disorder'
+]
+
+veterans = {
+    'Extreme Violence': {
+        'description': (
+            'For experiencing extreme violence: '
+            'Add +10% to your Agent’s Occult skill. Reduce SAN '
+            'by 5. Subtract 3 from your Agent’s CHA and each '
+            'Bond. Your Agent is Adapted to Violence.'
+        ),
+    },
+    'Captivity or Imprisonment': {
+        'description': (
+            'Add +10% to your Agent’s Occult skill. Reduce SAN '
+            'by 5. Subtract 3 from your Agent’s POW. Your Agent '
+            'is Adapted to Helplessness.'
+        )
+
+    },
+    'Hard Experience': {
+        'description': (
+            'Add +10% to your Agent’s Occult and +10% to any '
+            'four skills other than Unnatural. This can bring skills '
+            'higher than 80%. Reduce your Agent’s SAN by 5. '
+            'Remove one Bond.'
+        ),
+        'effects': (
+            ('modify_skill', 'Occult', lambda s: s * 1.1),
+            ('modify_skill', 'Occult', lambda s: s + 20),
+            ('modify_stats', lambda stats: {'SAN': stats['SAN'] - 5}),
+            ('modify_stats', lambda stats: {'Breaking Point': stats['SAN'] - stats['POW']}),
+            ('random_disorder',),
+        ),
+    },
+    'Things Man Was Not Meant To Know': {
+        'description': (
+            'Your Agent gains 10% in the Unnatural skill and adds '
+            '+20% to Occult. Reduce your Agent’s SAN by their POW. '
+            'Your Agent gains a new disorder caused by '
+            'the Unnatural. Reset your Agent’s Breaking '
+            'Point to their new SAN minus POW.'
+        ),
+    },
 }
 
-comp_sci_hack = {
-    'prof_skill': computer_science_skills,
-    'num_of_choices': 4,
-    'bonds': 3,
-    'rec_stat': 'INT'
+historian_description = (
+    "You study humanity. You're concerned with the "
+    'patterns that emerge over time, across land masses, '
+    'cultures, and language groups. You might be a number- '
+    'cruncher, a field worker trudging through the jungle, '
+    'a consultant in a war zone, or a think-tank analyst '
+    'sifting myth from history in studies of the Tcho-Tcho '
+    'peoples. '
+)
+engineer_description = (
+    'Computers and machinery are the backbone of '
+    'modern industry. You are a craftsman with data or '
+    'machinery, possibly for the government and most '
+    'definitely for profit. However you use your skills, '
+    'the overlap between information technology and '
+    'awareness of the unnatural could make this the most '
+    'dangerous job on the planet.'
+)
+
+federal_agent_description = (
+    'Many Delta Green Agents are federal law enforcement '
+    'officers, mostly from the FBI. Delta Green decided '
+    'long ago that federal agents have the optimum balance '
+    'of skills and mental stability needed to confront '
+    'the unnatural.'
+)
+
+physician_description = (
+    'Doctors are often the first to uncover signs of an unnatural '
+    'incursion, and the most valuable investigators '
+    'of its disastrous effects on humanity.'
+)
+scientist_description = (
+    'You expand human knowledge in a field such as '
+    'biology, physics, or chemistry. When certain forms of '
+    "knowledge cause insanity and death, it's easy to conclude "
+    'that some hypotheses should not be tested.'
+)
+special_operator_description = (
+    'As part of a force like the U.S. Army Rangers, you '
+    'volunteered for a more difficult path than other soldiers. '
+    "You've spent years in the most grueling training "
+    'on the planet, and now serve on the most dangerous '
+    'missions around.'
+)
+criminal_description = (
+    'So much is illegal that there are broad economies of crime. '
+    'This profile fits a hardened militant or a traditional “black '
+    'collar” criminal: pimp, burglar, extortionist, or thug. If you '
+    'want a white-collar criminal, choose Computer Scientist or '
+    'Business Executive and make very risky decisions.'
+)
+
+firefighter_description = (
+    'Your job oscillates between the tedium of maintaining your '
+    'gear, exhilaration when the alarm finally comes, and the '
+    'work of investigating a scene after the smoke has cleared. If '
+    "you're involved with Delta Green, you clearly stumbled into "
+    'something worse than a house fire.'
+)
+
+foreign_service_officer_description = (
+    'You travel to strange lands, meet interesting people, and '
+    'try to get along with them. Odds are you work for the State '
+    'Department, though USAID, the Commercial Service and '
+    'the Foreign Agriculture Service also have FSOs. Either way, '
+    "you've had every opportunity to learn exotic and deadly "
+    'things; the kinds of things that qualify you for Delta Green '
+    'clearance.'
+)
+intelligence_analyst_description = (
+    'In the FBI, NSA and CIA, there are those who gather '
+    'information and those who decide what it means. You '
+    'take information from disparate sources—newspapers, '
+    'websites, informants, ELINT, and the assets developed by '
+    'Case Officers—and figure out what it means. In short, '
+    'your job is the piecing together of unrelated knowledge, a '
+    'dangerous endeavor in the world of Delta Green.'
+)
+
+business_executive_description = (
+    'Your tools are a computer and smartphone. You might '
+    'be moving millions of dollars, or bits of data, or both. '
+    'Or you might be a prosecutor, a defense attorney, or '
+    'judge.'
+)
+
+intelligence_case_officer_description = (
+    'You recruit people to spy on their own countries for your '
+    'agency, probably the CIA. Your job is to develop foreign '
+    "intelligence sources ('assets'), communicate with them, "
+    "and keep them under control, productive, and alive. It's "
+    'a hard business because you must view everyone as a '
+    'potential threat, liar, or tool to further your agenda. If your '
+    'name came to the attention of Delta Green, congratulations; '
+    "you are now someone else's asset."
+)
+
+media_specialist_description = (
+    'You might be an author, an editor, a researcher for a '
+    'company or any branch of the government, a blogger, '
+    'a TV reporter, or a scholar of rare texts. With the '
+    "unnatural, you've uncovered the story of a lifetime."
+    # TODO: With the unnatural?
+)
+
+medicine_description = (
+    'Medical professionals are on the front line when awful '
+    "things happen. Is that what brought you to the group's "
+    'attention?'
+)
+
+pilot_description = (
+    'Air or sea, commercial or military, your duty is to keep your '
+    'passengers alive and craft intact. This can lead to hard '
+    'choices when your passengers put the vehicle in danger. Or '
+    'are you a drone operator, flying a Predator from a thousand '
+    'miles away? Either way, what op brought you to the attention '
+    'of Delta Green?'
+)
+
+police_officer_description = (
+    'You serve and protect. Police officers walk the beat in uniform. '
+    'Deputy sheriffs answer to an elected law enforcer and '
+    'have jurisdiction over an entire county. Detectives come in '
+    'after the fact and put the pieces together.'
+)
+
+program_manager_description = (
+    'You run an organization. Someone has to secure funding, move '
+    "resources, and make connections—and that's you. You control "
+    'a budget and are responsible for how your program is maintained '
+    'and where the money goes. Organizations discover the '
+    'most startling things in their pursuit of profit or the public good.'
+)
+military_description = (
+    'Governments will always need boots on the ground and '
+    'steady hands holding rifles. When war begins, civilization '
+    'gets out of the way. With the social contract void, unnatural '
+    "things creep in at the edges. There's a reason Delta Green "
+    'began in the military.'
+)
+
+professions = {
+    'Historian': {
+        'description': historian_description,
+        'number_of_choices': 2,
+        'number_of_bonds': 4,
+        'recommended_stats': 'INT',
+        **historian_skills,
+    },
+    'Engineer': {
+        'description': engineer_description,
+        'number_of_choices': 4,
+        'number_of_bonds': 3,
+        'recommended_stats': 'INT',
+        **engineer_skills,
+    },
+    'Federal Agent': {
+        'description': federal_agent_description,
+        'number_of_choices': 1,
+        'number_of_bonds': 3,
+        'recommended_stats': 'CON, POW, CHA',
+        **federal_agent_skills,
+    },
+    'Physician': {
+        'description': physician_description,
+        'number_of_choices': 2,
+        'number_of_bonds': 3,
+        'recommended_stats': 'INT, POW, CON',
+        **physician_skills,
+    },
+    'Scientist': {
+        'description': scientist_description,
+        'number_of_choices': 3,
+        'number_of_bonds': 4,
+        'recommended_stats': 'INT',
+        **scientist_skills,
+    },
+    'Special Operator': {
+        'description': special_operator_description,
+        'number_of_choices': 0,
+        'number_of_bonds': 2,
+        'recommended_stats': 'STR, CON, POW',
+        **special_operator_skills,
+    },
+    'Criminal': {
+        'description': criminal_description,
+        'number_of_choices': 2,
+        'number_of_bonds': 4,
+        'recommended_stats': 'STR, DEX',
+        **criminal_skills,
+    },
+    'Firefighter': {
+        'description': firefighter_description,
+        'number_of_choices': 0,
+        'number_of_bonds': 3,
+        'recommended_stats': 'STR, DEX, CON',
+        **firefighter_skills,
+    },
+    'Foreign Service Officer': {
+        'description': foreign_service_officer_description,
+        'number_of_choices': 0,
+        'number_of_bonds': 3,
+        'recommended_stats': 'INT, CHA',
+        **foreign_service_officer_skills,
+    },
+    'Intelligence Analyst': {
+        'description': intelligence_analyst_description,
+        'number_of_choices': 0,
+        'number_of_bonds': 3,
+        'recommended_stats': 'INT',
+        **intelligence_analyst_skills
+    },
+    'Business Executive': {
+        'description': business_executive_description,
+        'number_of_choices': 4,
+        'number_of_bonds': 4,
+        'recommended_stats': 'INT, CHA',
+        **business_executive_skills,
+    },
+    'Intelligence Case Officer': {
+        'description': intelligence_case_officer_description,
+        'number_of_choices': 0,
+        'number_of_bonds': 2,
+        'recommended_stats': 'INT, POW, CHA',
+        **intelligence_case_officer_skills,
+    },
+    'Media Specialist': {
+        'description': media_specialist_description,
+        'number_of_choices': 5,
+        'number_of_bonds': 4,
+        'recommended_stats': 'INT, CHA',
+        **media_specialist_skills,
+    },
+    'Paramedic': {
+        'description': medicine_description,
+        'number_of_choices': 2,
+        'number_of_bonds': 4,
+        'recommended_stats': 'INT, POW, CHA',
+        **paramedic_skills,
+    },
+    'Pilot': {
+        'description': pilot_description,
+        'number_of_choices': 2,
+        'number_of_bonds': 3,
+        'recommended_stats': 'DEX, INT',
+        **pilot_skills,
+    },
+    'Police Officer': {
+        'description': police_officer_description,
+        'number_of_choices': 1,
+        'number_of_bonds': 3,
+        'recommended_stats': 'STR, CON, POW',
+        **police_officer_skills,
+    },
+    'Program Manager': {
+        'description': program_manager_description,
+        'number_of_choices': 1,
+        'number_of_bonds': 4,
+        'recommended_stats': 'INT, CHA',
+        **program_manager_skills,
+    },
+    'Soldier': {
+        'description': military_description,
+        'number_of_choices': 3,
+        'number_of_bonds': 4,
+        'recommended_stats': 'STR, CON',
+        **soldier_skills,
+    },
 }
 
-fed_agent = {
-    'prof_skill': federal_agent_skills,
-    'num_of_choices': 1,
-    'bonds': 3,
-    'rec_stat': 'CON, POW, CHA'
-}
-
-physician = {
-    'prof_skill': physician_skills,
-    'num_of_choices': 2,
-    'bonds': 3,
-    'rec_stat': 'INT, POW, CON'
-}
-
-scientist = {
-    'prof_skill': scientist_skills,
-    'num_of_choices': 3,
-    'bonds': 4,
-    'rec_stat': 'INT'
-}
-
-spec_op = {
-    'prof_skill': special_operator_skills,
-    'num_of_choices': 0,
-    'bonds': 2,
-    'rec_stat': 'STR, CON, POW'
-}
-
-criminal = {
-    'prof_skill': criminal_skills,
-    'num_of_choices': 2,
-    'bonds': 4,
-    'rec_stat': 'STR, DEX'
-}
-
-firefighter = {
-    'prof_skill': firefighter_skills,
-    'num_of_choices': 0,
-    'bonds': 3,
-    'rec_stat': 'STR, DEX, CON'
-}
-
-fso = {
-    'prof_skill': foreign_service_officer_skills,
-    'num_of_choices': 0,
-    'bonds': 3,
-    'rec_stat': 'INT, CHA'
-}
-
-intel_anal = {
-    'prof_skill': intelligence_analyst_skills,
-    'num_of_choices': 0,
-    'bonds': 3,
-    'rec_stat': 'INT'
-}
-
-law_exec = {
-    'prof_skill': lawyer_business_executive_skills,
-    'num_of_choices': 4,
-    'bonds': 4,
-    'rec_stat': 'INT, CHA'
-}
-
-ico = {
-    'prof_skill': intelligence_case_officer_skills,
-    'num_of_choices': 0,
-    'bonds': 2,
-    'rec_stat': 'INT, POW, CHA'
-}
-
-med_spec = {
-    'prof_skill': media_specialist_skills,
-    'num_of_choices': 5,
-    'bonds': 4,
-    'rec_stat': 'INT, CHA'
-}
-
-nurse_para = {
-    'prof_skill': nurse_paramedic_skills,
-    'num_of_choices': 2,
-    'bonds': 4,
-    'rec_stat': 'INT, POW, CHA'
-}
-
-pilo_sail = {
-    'prof_skill': pilot_sailor_skills,
-    'num_of_choices': 2,
-    'bonds': 3,
-    'rec_stat': 'DEX, INT'
-}
-
-police = {
-    'prof_skill': police_officer_skills,
-    'num_of_choices': 1,
-    'bonds': 3,
-    'rec_stat': 'STR, CON, POW'
-}
-
-prog_mana = {
-    'prof_skill': program_manager_skills,
-    'num_of_choices': 1,
-    'bonds': 4,
-    'rec_stat': 'INT, CHA'
-}
-
-soldier = {
-    'prof_skill': soldier_marine_skills,
-    'num_of_choices': 3,
-    'bonds': 4,
-    'rec_stat': 'STR, CON'
-}
-
-inventory = ['Glock 19 (Medium Pistol)', 'First Aid Kit', 'Self-Applying Tourniquet',
-             'Hemostatic Gel', 'Clothes', 'Boxes of Ammunition', 'S&W Model 36 (Light Pistol)',
-             'Extra Pistol Magazines', 'Flashlight', 'Folding Knife (Knife)', 'Basic Tools',
-             'Doorstops', 'Chalk', 'Bottled Water', 'Energy Bars', 'Batteries', 'Sunscreen',
-             'Antibacterial Gel', 'Dufflebag or Backpack']
-
-list_of_motivations = ['Exploiting the unnatural', 'Recognition for achievements',
-                       'Showing others how its done', 'Correcting past mistakes',
-                       'Success despite obstacles', 'Proving my worth', 'Getting the job done',
-                       'Living up to expectations', 'Doing a job no one else can do',
-                       'Constant improvement', 'Conspiracy theorizing',
-                       'Making sense of a past tragedy', 'The thrill of discovery',
-                       'Exploration', 'Solving a particular mystery', 'Understanding the unnatural',
-                       'Learning a groups secrets', 'Expanding human knowledge',
-                       'Solving hard problems', 'Survival at all costs',
-                       'Professionalism', 'Doing whats right', 'Following the law',
-                       'Healing', 'Faith', 'Patriotism', 'Personal integrity', 'Atonement',
-                       'Protect a bond', 'Protect my family', 'Protect my friends/colleagues',
-                       'Protect an organization', 'Protect a community', 'Protect my country',
-                       'Protect humanity', 'Protect innocents',
-                       'Figuring out what people want to hear', 'Telling lies from the turth',
-                       'Communication', 'Diplomacy', 'Family obligations',
-                       'Knowing what makes people tick', 'We can fix this',
-                       'Never letting a particular bond down', 'New romance',
-                       'Recruiting new agents and friendlies', 'Investigating...',
-                       'Revenge against...', 'Staying one step ahead of...', 'Stopping...',
-                       'A beloved pet', 'Favorite academic pursuit', 'Favorite art form',
-                       'Favorite hobby', 'Favorite bad habit', 'Finding true meaning',
-                       'Home', 'Sports', 'Intimacy', 'Anything for a sense of control']
-
-list_of_bonds = ['Spouse', 'Ex-Spouse', 'Son', 'Daughter',
-                 'Parent', 'Grandparent', 'Best Friend',
-                 'Coworker', 'Partner', 'Psychologist',
-                 'Therapist', 'Spouse & Children', 'Parents',
-                 'Siblings', 'Colleagues in an intense job',
-                 'Church', 'Support Group', 'Survivors of a shared trauma',
-                 'Brother', 'Sister']
-
-list_of_employers = ['Federal Bureau of Investigation', 'Drug Enforcement Administration',
-                     'Immigration & Customs Enforcement', 'U.S. Marshal',
-                     'U.S. Army', 'U.S. Airforce', 'U.S. Navy', 'U.S. Marines',
-                     'U.S. Special Operations Command', 'Central Intelligence Agency',
-                     'Department of State', 'Centre for Disease Control', 'None']
-
-list_of_professions = ['Anthropologist', 'Historian', 'Computer Scientist',
-                       'Engineer', 'Federal Agent', 'Physician',
-                       'Scientist', 'Special Operator', 'Criminal',
-                       'Firefighter', 'Foreign Service Officer',
-                       'Intelligence Analyst', 'Lawyer', 'Business Executive',
-                       'Intelligence Case Officer', 'Media Specialist', 'Nurse',
-                       'Paramedic', 'Police Officer', 'Pilot', 'Sailor',
-                       'Program Manager', 'Soldier', 'Marine']
-
-list_of_disorders = ['Amnesia', 'Depersonalization Disorder', 'Depression',
-                     'Dissociative Identity Disorder', 'Fugues', 'Megalomania',
-                     'Paranoia', 'Sleep Disorder']
+for profession, copy_of in (
+        # TODO: Anthro and historian might not be the exact same
+        ('Anthropologist', 'Historian'),
+        ('Computer Scientist', 'Engineer'),
+        ('Lawyer', 'Business Executive'),
+        ('Nurse', 'Paramedic'),
+        ('Sailor', 'Pilot'),
+        ('Marine', 'Soldier')):
+    professions[profession] = professions[copy_of]
