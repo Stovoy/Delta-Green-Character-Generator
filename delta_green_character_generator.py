@@ -7,274 +7,6 @@ from lib.cli import CLI
 from lib.sheet import Sheet, Cell, Section
 
 
-def merge_dicts_replace(dict1, dict2):
-    for key in dict2:
-        if key in dict1:
-            dict2[key] = int(dict1[key])
-            del dict1[key]
-    dict2.update(dict1)
-    return dict2
-
-
-def merge_dicts(dict1, dict2):
-    for key in dict2:
-        if key in dict1:
-            dict2[key] = int(dict2[key]) + int(dict1[key])
-            del dict1[key]
-    dict2.update(dict1)
-    return dict2
-
-
-def spend_bonus_points(list_of_skills):
-    starting_points = 160
-    spent_points = 20
-    current_points = starting_points
-    skills_dict = {}
-    for item in list_of_skills:
-        if item not in data.skill_dict.keys():
-            skills_dict[item] = 0
-
-    print_from_list(list_of_skills)
-    print('\nPlease select a skill to put ' + str(spent_points) + ' points into.')
-    while current_points > 0:
-        print('You have ' + str(current_points) + ' remaining.')
-        choice = input()
-        try:
-            choice = int(choice)
-        except ValueError:
-            print('Please input at number.')
-            continue
-
-        choice -= 1
-
-        if choice < len(list_of_skills):
-            chosen_skill = list_of_skills[choice]
-        else:
-            print('Please input a smaller number.')
-            continue
-
-        if chosen_skill in skills_dict.keys():
-            special_skill = skills_dict[chosen_skill] + spent_points
-            if special_skill <= 80:
-                skills_dict.update({chosen_skill: int(skills_dict[chosen_skill]) + spent_points})
-                print('\nYour ' + chosen_skill + ' stat is: ' + str(skills_dict[chosen_skill]))
-                current_points = current_points - spent_points
-                continue
-            if skills_dict[chosen_skill] > 80:
-                print("Please choose a different skill. Can't exceed 80% right now.")
-                continue
-
-        stat_value = int(sheet[skill_dict[chosen_skill]].replace('%', ''))
-        stat_value = stat_value + spent_points
-
-        if stat_value <= 80:
-            sheet[skill_dict[chosen_skill]] = str(stat_value) + '%'
-            print('\nYour ' + chosen_skill + ' stat is: ' + str(stat_value))
-            current_points = current_points - spent_points
-            continue
-        if stat_value > 80:
-            print("\nPlease choose a different skill. Can't exceed 80% right now.")
-            continue
-
-    removal_list = []
-    for key in skills_dict.keys():
-        if skills_dict[key] == 0:
-            removal_list.append(key)
-
-    for item in removal_list:
-        skills_dict.pop(item)
-
-    return skills_dict
-
-
-def print_from_list(input_list):
-    i = 1
-    for item in input_list:
-        print(str(i) + '. ' + item)
-        i += 1
-
-
-def print_bonus_skills(skill_packages):
-    i = 1
-    for key in skill_packages.keys():
-        print(str(i) + '. ' + key + ': \n' + ', '.join([str(elem) for elem in skill_packages[key]]) + '\n')
-        i += 1
-
-
-def print_skills(chosen_skills):
-    i = 1
-    for skill in chosen_skills:
-        print(str(i) + '. ' + skill)
-        i += 1
-
-
-def set_bonus_skills(skill_packages):
-    print('\nSelect a bonus skill package to put points into\n')
-    print_bonus_skills(skill_packages)
-    print('Please select a skill package by number:')
-    while True:
-        choice = input()
-        try:
-            choice = int(choice)
-        except ValueError:
-            print('Please enter a number')
-            continue
-        try:
-            choice -= 1
-            _ = list(skill_packages.keys())[choice]
-        except IndexError:
-            print('Please use a different number')
-            continue
-        break
-
-    return list(skill_packages.keys())[choice]
-
-
-def get_package_skills(skill_packages, choice):
-    print(f"You've chosen {choice}")
-    return skill_packages[choice]
-
-
-def random_stat():
-    return sum(sorted([random.randint(1, 6) for x in range(4)])[1:])
-
-
-def set_stat_array():
-    stat_array = []
-    for loops in range(6):
-        stat_array.append(random_stat())
-    stat_array.sort(reverse=True)
-    return stat_array
-
-
-def compare_dicts_and_set_sheet_values(skill_dict, prof_dict):
-    list_of_skills = []
-    for key in skill_dict.keys():
-        if key not in prof_dict.keys():
-            list_of_skills.append(key)
-
-        set_sheet_value(skill_dict, key, str(prof_dict[key]) + '%')
-
-
-def set_sheet_value(dictionary, key, value):
-    sheet[dictionary[key]] = value
-
-
-def set_skills(skill_dict, prof_dict):
-    iterator = 1
-    cell_iterator = 35
-    for key in prof_dict.keys():
-        if key in skill_dict:
-            set_sheet_value(skill_dict, key, str(prof_dict[key]) + '%')
-        if key not in skill_dict:
-            value = key
-            key = 'Other Skill ' + str(iterator)
-            cell_key = 'F' + str(cell_iterator)
-            iterator += 1
-            cell_iterator += 1
-            self.sheet[cell_key] = value
-            set_sheet_value(skill_dict, key, str(prof_dict[value]) + '%')
-
-    cell_iterator += 1
-
-
-def set_spent_points(amount):
-    # TODO Remove this global and use a class variable instead
-    global stat_points
-    stat_points -= amount
-
-
-def update_stat_list(choice):
-    if choice in stat_list:
-        stat_list.remove(choice)
-
-
-def set_stat_value(stat_name, amount):
-    if stat_name in stat_list:
-        sheet[stat_dict[stat_name]] = amount
-    if stat_name not in stat_list:
-        choice = input('Please choose from: ' + str(stat_list) + '!\n')
-        set_stat_value(choice, amount)
-
-
-def print_listed_professions():
-    i = 0
-    while i < len(list_of_professions):
-        print(str(i + 1) + '. ' + list_of_professions[i])
-        i += 1
-
-
-def confirm():
-    print('\nAre you sure? Y/N')
-    choice = input()
-    if choice.lower() == 'y':
-        return True
-    elif choice.lower() == 'n':
-        return False
-    else:
-        print('Please input Y or N')
-
-
-def set_profession_stats(prof_choice):
-    print('You have chosen: ' + prof_choice)
-
-
-def point_buy(points):
-    spent_points = get_spent_points(points)
-    chosen_stat = get_chosen_stat(spent_points)
-    set_stat_value(chosen_stat, spent_points)
-    update_stat_list(chosen_stat)
-    set_spent_points(int(spent_points))
-    return int(spent_points)
-
-
-def handle_point_buy(stat_points):
-    current_points = stat_points
-    while current_points > 0:
-        points = point_buy(current_points)
-        current_points -= points
-
-
-def get_spent_points(points):
-    print('You have ' + str(points) + ' points. How many would you like to spend?\n')
-    while True:
-        spent_points = input()
-        try:
-            spent_points = int(spent_points)
-        except ValueError:
-            print('Please input a number')
-            continue
-
-        if spent_points > 0 and (points - spent_points) >= 0:
-            return spent_points
-        else:
-            print('Please try again')
-
-
-def handle_stats_array():
-    choices = (
-        ('Well Rounded', [13, 13, 12, 12, 11, 11]),
-        ('Focused', [15, 14, 12, 11, 10, 10]),
-        ('Highly Focused', [17, 14, 12, 10, 10, 9]),
-    )
-    chosen_stats = self.ui.prompt_choice('Select from the following', [choice[0] for choice in choices])
-    for choice in choices:
-        if choice[0] == chosen_stats:
-            self.stat_array = choice[1]
-
-    self.set_stat_distribution()
-
-
-def get_chosen_stat(points):
-    print('What stat would you like to put ' + str(points) + ' into?\nPlease choose from ' + str(stat_list) + '\n')
-    chosen_stat = input()
-    return chosen_stat
-
-
-def print_bonds(prof_name, prof_dict):
-    print('\nAs a ' + prof_name + ' you have ' + str(prof_dict['number_of_bonds']) + ' bonds.')
-
-
 class Generator:
     def __init__(self):
         self.sheet = Sheet()
@@ -300,13 +32,13 @@ class Generator:
     def step_stats(self):
         self.ui.prompt_choice_with_fns('Choose your stats', (
             ('Roll', self.set_random_stats),
-            ('Point buy', lambda: handle_point_buy(stat_points)),
-            ('Array', handle_stats_array),
+            ('Point buy', lambda: self.handle_point_buy()),
+            ('Array', self.handle_stats_array),
         ))
 
     def set_random_stats(self):
         while True:
-            self.stat_array = set_stat_array()
+            self.stat_array = self.random_stat_array()
             print(f'Your stats are {self.stat_array} which totals {sum(self.stat_array)}')
             if self.ui.prompt_yes_no('Are you satisfied with these stats?'):
                 break
@@ -317,10 +49,10 @@ class Generator:
 
         while self.stat_array:
             value = self.stat_array.pop(0)
-            stat_choice = self.ui.prompt_choice(f'Choose where to place {value} stat points', stat_list)
-            self.ui.info(f'Placed {value} points into {stat_choice}')
-            self.sheet[data.stat_dict[stat_choice]] = value
-            stat_list.remove(stat_choice)
+            choice = self.ui.prompt_choice(f'Choose where to place {value} stat points', stat_list)
+            self.ui.info(f'Placed {value} points into {choice}')
+            self.sheet.set_by_section(Section.Stats, choice, value)
+            stat_list.remove(choice)
 
     def step_derived_stats(self):
         get_str_con = int(self.sheet['C8']) + int(self.sheet['C9'])
@@ -342,14 +74,14 @@ class Generator:
             self.profession = self.ui.prompt_choice('Select your profession', list(data.professions.keys()))
             self.profession = {'name': self.profession, **data.professions[self.profession]}
             self.ui.info(f'You have chosen {self.profession}')
-            skills_dict = self.confirm_profession()
-            if skills_dict is not None:
+            skills = self.confirm_profession()
+            if skills is not None:
                 break
-        master_skills = merge_dicts_replace(skills_dict, data.default_skills)
-        set_skills(data.skill_dict, master_skills)
-        self.background = set_bonus_skills(data.skill_packages)
-        bonus_skills_dict = spend_bonus_points(get_package_skills(data.skill_packages, self.background))
-        set_skills(data.skill_dict, bonus_skills_dict)
+        self.set_skills({**skills, **data.default_skills})
+        self.background = self.ui.prompt_choice(
+            'Select a bonus skill package to put points into',
+            list(data.skill_packages.keys()))
+        self.set_skills(self.spend_bonus_points(data.skill_packages[self.background]))
 
     def confirm_profession(self):
         self.ui.info(self.profession['description'])
@@ -374,15 +106,15 @@ class Generator:
     def set_profession_skills(self):
         result = {}
 
-        for choices in self.profession['skills']['choices']:
+        for choices in self.profession['choices']:
             self.ui.display_list(list(choices.keys()))
             choice = self.ui.prompt_choice('Select a skill', choices)
             self.ui.info(f"You've chosen {choice}: {choices[choice]}")
             result.update({choice: choices[choice]})
 
-        for language in list(self.profession['skills']['languages'].items()):
-            choice = input(f'Please choose {language[0]}: ')
-            self.ui.info(f"You've chosen {choice} {language[1]}")
+        for language in list(self.profession['languages'].items()):
+            choice = self.ui.prompt_text(f'Choose {language[0]}:')
+            self.ui.info(f"You've chosen: {choice} - {language[1]}%")
             result.update({f'Foreign Language ({choice})': language[1]})
 
         for skill in self.profession['skills'].items():
@@ -398,7 +130,7 @@ class Generator:
                 # TODO: self.ui.info('You already have:')
                 choice = self.ui.prompt_choice(
                     f"Please choose a skill from this list that you don't already have: ",
-                    self.profession['skills']['choose_skills'].keys())
+                    list(self.profession['choose_skills'].keys()))
                 result.update({choice: self.profession['skills']['choose_skills'][choice]})
 
         return result
@@ -410,38 +142,22 @@ class Generator:
         self.ui.info(f'As a {self.profession["name"]}, you have {self.profession["bonds"]} bonds.')
         self.ui.prompt_choice_with_fns(
             'Would you like to choose your bonds or create random bonds?', (
-                ('Choose your bonds', self.choose_random_bonds),
-                ('Random bonds', self.choose_bonds)
-            ))
+                ('Choose your bonds',
+                 lambda: self.choose_bonds(lambda: input('Please enter a bond name or bond type: '), interactive=True)),
+                ('Random bonds', lambda: self.choose_bonds(lambda: random.choice(data.bonds))),
+            ),
+        )
 
-    def choose_bonds(self):
-        key_iterator = 1
-        score = self.sheet['C13']
+    def choose_bonds(self, bond_getter, interactive=False):
+        score = self.sheet[Cell.Score]
         bond_choices = self.profession['number_of_bonds']
-        while bond_choices > 0:
-            self.ui.info(f'You have {bond_choices} bonds remaining.')
-            choice = input('Please enter a bond name or bond type: ')
-            bond_key = f'Bond {key_iterator}'
-            score_key = f'Score {key_iterator}'
-            set_sheet_value(data.bonds_dict, bond_key, choice)
-            set_sheet_value(data.bonds_score_dict, score_key, score)
-            key_iterator += 1
+        for i in range(1, self.profession['number_of_bonds'] + 1):
+            if interactive:
+                self.ui.info(f'You have {bond_choices} bonds remaining.')
+            self.sheet.set_by_section(Section.Bonds, i, bond_getter())
+            self.sheet.set_by_section(Section.BondScores, i, score)
+            i += 1
             bond_choices -= 1
-
-    def choose_random_bonds(self):
-        key_iterator = 1
-        score = self.sheet['C13']
-        bond_choices = self.profession['number_of_bonds']
-        while bond_choices > 0:
-            bond_key = f'Bond {key_iterator}'
-            score_key = f'Score {key_iterator}'
-            set_sheet_value(data.bonds_dict, bond_key, self.get_random_bond())
-            set_sheet_value(data.bonds_score_dict, score_key, score)
-            key_iterator += 1
-            bond_choices -= 1
-
-    def get_random_bond(self):
-        return random.choice(data.bonds)
 
     def increase_n_skill_values(self, n, amount):
         for _ in range(n):
@@ -451,7 +167,7 @@ class Generator:
 
             stat = util.percent_to_int(self.sheet.get_by_section(Section.Skills, choice))
             stat += amount
-            self.sheet.set_by_section(Section.Skills, choice, self.int_to_percent(stat))
+            self.sheet.set_by_section(Section.Skills, choice, util.int_to_percent(stat))
 
     def step_finalize(self):
         self.set_veteran_status()
@@ -466,7 +182,7 @@ class Generator:
             choice = self.ui.prompt_yes_no('Is your character a tramautized veteran?')
             if choice:
                 veteran_status_name = self.ui.prompt_choice(
-                    'What kind of trauma did you experience?', data.veterans.keys())
+                    'What kind of trauma did you experience?', list(data.veterans.keys()))
                 self.veteran_status = data.veterans[veteran_status_name]
                 self.veteran_status['name'] = veteran_status_name
                 self.ui.info(choice['description'])
@@ -637,6 +353,94 @@ class Generator:
                 bio += part[0]
         self.ui.info(f'Your bio is: {bio}')
         self.sheet[Cell.Bio] = bio
+
+    def spend_bonus_points(self, skills):
+        # TODO: I messed something up here
+        starting_points = 160
+        points_to_spend = 20
+        current_points = starting_points
+        special_skills = {k: 0 for k in skills if k in Section.Skills.has(k)}
+        while current_points > 0:
+            self.ui.info(f'You have {current_points} remaining.')
+            choice = self.ui.prompt_choice(f'Please select a skill to put {points_to_spend} points into.', skills)
+
+            if choice in special_skills:
+                special_skill = skills[choice] + points_to_spend
+                if special_skill <= 80:
+                    special_skills.update({choice: skills[choice] + points_to_spend})
+                    self.ui.info(f'Your {choice} stat is: {special_skills[choice]}')
+                    current_points -= points_to_spend
+                else:
+                    self.ui.info("Please choose a different skill. Can't exceed 80% right now.")
+            else:
+                stat_value = util.percent_to_int(self.sheet.get_by_section(Section.Skills, choice)) + points_to_spend
+
+                if stat_value <= 80:
+                    self.sheet.set_by_section(Section.Skills, choice, util.int_to_percent(stat_value))
+                    self.ui.info(f'Your {choice} stat is: {stat_value}')
+                    current_points -= points_to_spend
+                else:
+                    self.ui.info("Please choose a different skill. Can't exceed 80% right now.")
+
+        return {k: v for k, v in special_skills.items() if v != 0}
+
+    def random_stat(self):
+        return sum(sorted([random.randint(1, 6) for _ in range(4)])[1:])
+
+    def random_stat_array(self):
+        stat_array = []
+        for loops in range(6):
+            stat_array.append(self.random_stat())
+        stat_array.sort(reverse=True)
+        return stat_array
+
+    def compare_dicts_and_set_sheet_values(self, skill_dict, prof_dict):
+        list_of_skills = []
+        for key in skill_dict.keys():
+            if key not in prof_dict.keys():
+                list_of_skills.append(key)
+
+            self.sheet[skill_dict[key]] = str(prof_dict[key]) + '%'
+
+    def set_skills(self, skills):
+        other_skill = 1
+        for i, (skill, value) in enumerate(skills.items()):
+            if Section.Skills.has(skill):
+                self.sheet.set_by_section(Section.Skills, skill, util.int_to_percent(value))
+            elif Section.OtherSkills.has(skill):
+                self.sheet.set_by_section(Section.OtherSkills, skill, util.int_to_percent(value))
+            else:
+                print(i, skill, value, other_skill)
+                skill = f'Other Skill {other_skill}'
+                cell_key = f'F{other_skill + 34}'
+                self.sheet[cell_key] = skill
+                self.sheet.set_by_section(Section.OtherSkills, skill, util.int_to_percent(value))
+                other_skill += 1
+
+    def handle_point_buy(self):
+        stat_list = data.stats[:]
+        while self.stat_points > 0:
+            spent_points = self.ui.prompt_int(
+                f'You have {self.stat_points}. '
+                f'How many would you like to spend?', 1,
+                self.stat_points)
+            choice = self.ui.prompt_choice(f'What stat would you like to put {spent_points} into?', stat_list)
+            self.sheet.set_by_section(Section.Stats, choice, spent_points)
+            stat_list.remove(choice)
+            self.stat_points -= spent_points
+
+    def handle_stats_array(self):
+        choices = (
+            ('Well Rounded', [13, 13, 12, 12, 11, 11]),
+            ('Focused', [15, 14, 12, 11, 10, 10]),
+            ('Highly Focused', [17, 14, 12, 10, 10, 9]),
+        )
+        chosen_stats = self.ui.prompt_choice('Select from the following', [choice[0] for choice in choices])
+        for choice in choices:
+            if choice[0] == chosen_stats:
+                self.stat_array = choice[1]
+
+        self.set_stat_distribution()
 
 
 if __name__ == '__main__':

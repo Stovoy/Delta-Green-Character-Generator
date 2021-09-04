@@ -665,13 +665,6 @@ veterans = {
             'higher than 80%. Reduce your Agent’s SAN by 5. '
             'Remove one Bond.'
         ),
-        'effects': (
-            ('modify_skill', 'Occult', lambda s: s * 1.1),
-            ('modify_skill', 'Occult', lambda s: s + 20),
-            ('modify_stats', lambda stats: {'SAN': stats['SAN'] - 5}),
-            ('modify_stats', lambda stats: {'Breaking Point': stats['SAN'] - stats['POW']}),
-            ('random_disorder',),
-        ),
     },
     'Things Man Was Not Meant To Know': {
         'description': (

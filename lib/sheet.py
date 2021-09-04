@@ -42,6 +42,9 @@ class Section(Enum):
     OtherSkills = 5
     Motivations = 6
 
+    def has(self, key):
+        return key in section_map[self]
+
 
 section_map = {
     Section.Stats: {
@@ -113,12 +116,12 @@ section_map = {
         'Unnatural': 'G33',
     },
     Section.OtherSkills: {
-        1: 'G35',
-        2: 'G36',
-        3: 'G37',
-        4: 'G38',
-        5: 'G39',
-        6: 'G40'
+        'Other Skill 1': 'G35',
+        'Other Skill 2': 'G36',
+        'Other Skill 3': 'G37',
+        'Other Skill 4': 'G38',
+        'Other Skill 5': 'G39',
+        'Other Skill 6': 'G40'
     },
     Section.Motivations: {
         0: 'E16',
@@ -146,6 +149,8 @@ class Cell(Enum):
     INT = 13
     POW = 14
     CHA = 15
+    Occult = 16
+    Score = 17
 
 
 cell_map = {
@@ -163,4 +168,5 @@ cell_map = {
     Cell.POW: section_map[Section.Stats]['POW'],
     Cell.CHA: section_map[Section.Stats]['CHA'],
     Cell.Occult: section_map[Section.Skills]['Occult'],
+    Cell.Score: 'C13',
 }
